@@ -18,6 +18,7 @@ out/
 # release/
 
 # Gradle files
+gradle/
 .gradle/
 build/
 
@@ -43,6 +44,7 @@ captures/
 .idea/gradle.xml
 .idea/assetWizardSettings.xml
 .idea/dictionaries
+.idea/codeStyles
 .idea/libraries
 # Android Studio 3 in .gitignore file.
 .idea/caches
