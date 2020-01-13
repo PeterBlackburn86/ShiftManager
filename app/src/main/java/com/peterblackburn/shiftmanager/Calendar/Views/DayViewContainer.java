@@ -23,7 +23,7 @@ public class DayViewContainer extends ViewContainer {
         _dayText = view.findViewById(R.id.calendarDayText);
         _dayContainer = view.findViewById(R.id.calendarDayContainer);
 
-        _dayContainer.setBackgroundColor(Color.BLACK);
+//        _dayContainer.setBackgroundColor(Color.BLACK);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

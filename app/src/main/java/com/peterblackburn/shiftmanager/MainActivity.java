@@ -9,7 +9,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
-import com.peterblackburn.shiftmanager.Calendar.CalendarFragment;
+import com.peterblackburn.shiftmanager.Calendar.CalendarFactory;
+import com.peterblackburn.shiftmanager.Fragments.CalendarFragment;
 import com.peterblackburn.shiftmanager.Enums.MonthUpdate;
 import com.peterblackburn.shiftmanager.Fragments.BaseFragment;
 import com.peterblackburn.shiftmanager.Fragments.HomeFragment;
@@ -106,10 +107,10 @@ public class MainActivity extends AppCompatActivity
     public void updateMonth(View view) {
         switch (view.getId()) {
             case R.id.prevMonthImg:
-                CalendarFragment.getInstance().updateMonth(MonthUpdate.PREVIOUS_MONTH);
+                CalendarFactory.getInstance(this).updateMonth(MonthUpdate.PREVIOUS_MONTH);
                 break;
             case R.id.nextMonthImg:
-                CalendarFragment.getInstance().updateMonth(MonthUpdate.NEXT_MONTH);
+                CalendarFactory.getInstance(this).updateMonth(MonthUpdate.NEXT_MONTH);
                 break;
         }
     }

@@ -1,4 +1,4 @@
-package com.peterblackburn.shiftmanager.Helper;
+package com.peterblackburn.shiftmanager.Realm.Helper;
 
 import com.peterblackburn.shiftmanager.Realm.Objects.Shift;
 import java.util.ArrayList;
@@ -7,8 +7,9 @@ import io.realm.RealmResults;
 
 public class RealmHelper {
 
+    public static final String SHIFT_TABLE = "Shift";
+
     private static RealmHelper _instance;
-    private long _currentPrimaryKey = -1;
     private Realm _realm;
 
     private RealmHelper() {
@@ -47,14 +48,17 @@ public class RealmHelper {
         _realm.commitTransaction();
     }
 
-    public long nextPrimaryKey() {
-        if(_currentPrimaryKey == -1) {
+    public long nextPrimaryKey(String className) {
+
+        long _currentPrimaryKey = -1;
+        if(className != null) {
             Realm realm = Realm.getDefaultInstance();
-            _currentPrimaryKey = realm.where(Shift.class).max("id").intValue() + 1;
-            return _currentPrimaryKey;
-        } else {
-            _currentPrimaryKey += 1;
-            return _currentPrimaryKey;
+            switch (className) {
+                case SHIFT_TABLE:
+                    _currentPrimaryKey = realm.where(Shift.class).max("id").intValue() + 1;
+                    break;
+            }
         }
+        return _currentPrimaryKey;
     }
 }

@@ -1,9 +1,5 @@
 package com.peterblackburn.shiftmanager.Realm.Objects;
 
-import com.peterblackburn.shiftmanager.Enums.DayOfWeek;
-import java.time.LocalTime;
-import io.realm.RealmObject;
-
 public class PayRate {
 //    private String payDay;
 //    private LocalTime payStart;

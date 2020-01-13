@@ -1,4 +1,4 @@
 package com.peterblackburn.shiftmanager.Theme;
 
-public class Main {
+public class ThemeFactory {
 }
