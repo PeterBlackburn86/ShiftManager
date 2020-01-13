@@ -143,18 +143,22 @@ public class CalendarFragment extends BaseFragment implements CalendarInterface,
             public void bind(@NonNull DayViewContainer container, @NonNull CalendarDay day) {
                 container._dayText.setText(String.valueOf(day.getDate().getDayOfMonth()));
                 container._day = day;
+                RelativeLayout dayContainer = container._dayContainer;
                 if (day.getOwner() == DayOwner.THIS_MONTH) {
-                    container._dayText.setTextColor(Color.WHITE);
+
+                    if(day.getDate().equals(selectedDate)) {
+                        dayContainer.setBackgroundColor(getResources().getColor(R.color.darkPrimary));
+                        container._dayText.setTextColor(getResources().getColor(R.color.darkOnPrimary));
+                    } else {
+                        dayContainer.setBackgroundColor(getResources().getColor(R.color.darkSurface));
+                        container._dayText.setTextColor(getResources().getColor(R.color.darkOnSurface));
+                    }
+
                 } else {
                     container._dayText.setTextColor(Color.GRAY);
+                    dayContainer.setBackgroundColor(getResources().getColor(R.color.darkSurface));
                 }
 
-                RelativeLayout dayContainer = container._dayContainer;
-                if(day.getDate().equals(selectedDate)) {
-                    dayContainer.setBackgroundColor(getResources().getColor(R.color.darkThemeSecondary));
-                } else {
-                    dayContainer.setBackgroundColor(getResources().getColor(R.color.darkThemePrimary));
-                }
             }
         });
         calendarView.setMonthHeaderBinder(new MonthHeaderFooterBinder<MonthViewContainer>() {

@@ -3,10 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkThemeCalendarFragmentBG"
+    android:background="@color/darkBackground"
     android:clickable="true"
     android:focusable="true"
+    android:padding="@dimen/calendar_padding"
     android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/calendar_padding">
 
         <com.kizitonwose.calendarview.CalendarView
             android:id="@+id/calendarView"
@@ -18,20 +25,24 @@
             app:cv_outDateStyle="endOfGrid"
             app:cv_scrollMode="paged"
             app:cv_inDateStyle="allMonths" />
+    </FrameLayout>
+
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/calendar_padding"
-        android:background="@color/darkThemeCalendarEventTitleBG">
+        android:layout_marginBottom="@dimen/calendar_padding"
+        android:background="@color/darkSurface">
 
         <TextView
             android:id="@+id/shiftTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/darkThemeText"
+            android:textColor="@color/darkOnSurface"
             android:textSize="22sp"
             android:textAlignment="textStart"
             android:layout_marginEnd="@dimen/calendar_padding"
@@ -59,7 +70,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/darkThemeTextLight"
+                android:textColor="@color/darkOnBackground"
                 android:textSize="22sp"
                 android:layout_margin="@dimen/calendar_padding"
                 android:text="@string/event_not_found"

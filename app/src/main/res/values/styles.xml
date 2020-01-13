@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/darkPrimary</item>
+        <item name="colorPrimaryDark">@color/darkPrimary</item>
+        <item name="colorAccent">@color/darkSecondary</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -22,7 +22,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/darkThemeText</item>
+        <item name="android:textColor">@color/darkOnSurface</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
@@ -31,7 +31,7 @@
 
         <item name="android:layout_gravity">start</item>
         <item name="android:fitsSystemWindows">true</item>
-        <item name="android:background">@color/darkThemeSecondary</item>
+        <item name="android:background">@color/darkSurface</item>
     </style>
 
 </resources>

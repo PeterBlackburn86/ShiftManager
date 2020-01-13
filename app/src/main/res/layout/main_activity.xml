@@ -18,8 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         style="@style/navigation_style"
-        app:itemTextColor="@color/darkThemeText"
-        app:itemIconTint="@color/darkThemeText"
+        app:itemTextColor="@color/darkOnSurface"
+        app:itemIconTint="@color/darkOnSurface"
         app:headerLayout="@layout/main_nav_header"
         app:menu="@menu/main_activity_drawer"/>
 

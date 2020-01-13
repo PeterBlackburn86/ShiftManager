@@ -4,8 +4,9 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:background="@color/darkThemeCalendarLegendBG"
-    android:padding="10dp"
+    android:background="@color/darkSurface"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     android:weightSum="7">
 
     <TextView

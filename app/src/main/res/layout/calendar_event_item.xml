@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/darkThemeAccent">
+    android:background="@color/darkSurface">
 
 
     <TextView
         android:id="@+id/eventDateText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/darkThemePrimary"
+        android:background="@color/darkPrimary"
         android:gravity="center"
         android:lineSpacingExtra="2.5dp"
         android:textAllCaps="true"
-        android:textColor="@color/darkThemeText"
+        android:textColor="@color/darkOnPrimary"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="H,1:1"
@@ -49,7 +49,7 @@
         app:layout_constraintStart_toEndOf="@id/eventDateText"
         app:layout_constraintTop_toTopOf="@id/eventDateText"
         app:layout_constraintEnd_toStartOf="@+id/eventControlsCont"
-        android:background="@color/darkThemeAccent"
+        android:background="@color/darkSurface"
         android:padding="5dp"
         android:weightSum="2">
         <TextView
@@ -61,7 +61,7 @@
             android:gravity="center"
             android:lineSpacingExtra="2.5dp"
             android:textAllCaps="true"
-            android:textColor="@color/darkThemeText"
+            android:textColor="@color/darkOnSurface"
             android:textSize="13sp" />
 
         <TextView
@@ -73,7 +73,7 @@
             android:gravity="center"
             android:lineSpacingExtra="2.5dp"
             android:textAllCaps="true"
-            android:textColor="@color/darkThemeText"
+            android:textColor="@color/darkOnSurface"
             android:textSize="13sp" />
 
     </LinearLayout>
@@ -84,7 +84,7 @@
         android:orientation="horizontal"
         android:id="@+id/eventControlsCont"
         android:gravity="center"
-        android:background="@color/darkThemeAccent"
+        android:background="@color/darkSurface"
         app:layout_constraintBottom_toBottomOf="@id/eventStartCont"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/eventStartCont">
