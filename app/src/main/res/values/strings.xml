@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Shift Manager</string>
+
+    <!--NAV DRAWER STRINGS-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Shift Manager</string>
+    <string name="nav_header_subtitle">contact@shiftmanager.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!--NAV DRAWER MENU STRINGS-->
+    <string name="menu_home">Home</string>
+    <string name="menu_calendar">Calendar</string>
+
+    <!--CALENDAR STRINGS-->
+    <string name="event_title">Events | %1$s</string>
+    <string name="event_not_found">No Shifts Found</string>
+
+    <!--CALENDAR HEADER STRINGS-->
+    <string name="calendar_header_title">%1$s %2$s</string>
+    <string name="calendar_legend_monday">mon</string>
+    <string name="calendar_legend_tuesday">tue</string>
+    <string name="calendar_legend_wednesday">wed</string>
+    <string name="calendar_legend_thursday">thu</string>
+    <string name="calendar_legend_friday">fri</string>
+    <string name="calendar_legend_saturday">sat</string>
+    <string name="calendar_legend_sunday">sun</string>
+
+    <!--EVENT STRINGS-->
+    <string name="event_time">%1$s - %2$s</string>
+    <string name="event_type">%1$s (%2$s)</string>
+    <string name="title_activity_add_event">AddEventActivity</string>
+</resources>
