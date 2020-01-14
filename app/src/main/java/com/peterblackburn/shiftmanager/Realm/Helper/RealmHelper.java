@@ -50,12 +50,13 @@ public class RealmHelper {
 
     public long nextPrimaryKey(String className) {
 
-        long _currentPrimaryKey = -1;
+        long _currentPrimaryKey = 0;
         if(className != null) {
             Realm realm = Realm.getDefaultInstance();
             switch (className) {
                 case SHIFT_TABLE:
-                    _currentPrimaryKey = realm.where(Shift.class).max("id").intValue() + 1;
+                    Number key = realm.where(Shift.class).max("id");
+                    _currentPrimaryKey = (key == null) ? 0 : key.intValue() + 1;
                     break;
             }
         }

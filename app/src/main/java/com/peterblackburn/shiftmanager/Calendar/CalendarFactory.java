@@ -59,7 +59,7 @@ public class CalendarFactory {
         _currentMonth = YearMonth.now();
         _prevMonth = _currentMonth.minusMonths(1);
         _nextMonth = _currentMonth.plusMonths(1);
-        DayOfWeek firstDayOfWeek = WeekFields.of(Locale.getDefault()).getFirstDayOfWeek();
+        DayOfWeek firstDayOfWeek = WeekFields.of(Locale.UK).getFirstDayOfWeek();
         _calendarView.setup(_currentMonth, _currentMonth, firstDayOfWeek);
         _calendarView.scrollToMonth(_currentMonth);
         notifyMonthUpdated();
