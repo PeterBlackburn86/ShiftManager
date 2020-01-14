@@ -1,23 +1,7 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/darkPrimary</item>
-        <item name="colorPrimaryDark">@color/darkPrimary</item>
-        <item name="colorAccent">@color/darkSecondary</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="calendar_legend_headers">
+    <!-- DARK THEME STYLES -->
+    <style name="calendar_legend_dark">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
@@ -27,11 +11,162 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="navigation_style">
-
+    <style name="nav_dark">
         <item name="android:layout_gravity">start</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:background">@color/darkSurface</item>
+        <item name="itemTextColor">@color/darkOnSurface</item>
+        <item name="itemIconTint">@color/darkOnSurface</item>
     </style>
+
+    <style name="on_surface_dark">
+        <item name="android:textColor">@color/darkOnSurface</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="on_primary_dark">
+        <item name="android:textColor">@color/darkOnPrimary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="on_secondary_dark">
+        <item name="android:textColor">@color/darkOnSecondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="header_on_surface_dark" parent="on_surface_dark">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowDy">1.0</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:shadowColor">#888</item>
+    </style>
+
+
+    <style name="subheader_on_surface_dark" parent="header_on_surface_dark">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="page_background_dark">
+        <item name="android:background">@color/darkBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:padding">@dimen/calendar_padding</item>
+    </style>
+
+    <style name="surface_dark">
+        <item name="android:background">@color/darkSurface</item>
+    </style>
+    <style name="surface_primary_dark">
+        <item name="android:background">@color/darkPrimary</item>
+    </style>
+    <style name="surface_secondary_dark">
+        <item name="android:background">@color/darkSecondary</item>
+    </style>
+
+    <style name="button_primary_dark">
+        <item name="android:background">@color/darkPrimary</item>
+        <item name="android:textColor">@color/darkOnPrimary</item>
+    </style>
+    <style name="button_secondary_dark">
+        <item name="android:background">@color/darkSecondary</item>
+        <item name="android:textColor">@color/darkOnSecondary</item>
+    </style>
+
+    <style name="toolbar_dark">
+        <item name="android:background">@color/darkSurface</item>
+        <item name="titleTextColor">@color/darkOnSurface</item>
+        <item name="popupTheme">@style/AppTheme.PopupOverlayDark</item>
+    </style>
+
+    <style name="appbar_dark">
+        <item name="android:theme">@style/AppTheme.AppBarOverlayDark</item>
+    </style>
+
+    <!-- LIGHT THEME STYLES -->
+    <style name="calendar_legend_light">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/lightOnSurface</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="nav_light">
+        <item name="android:layout_gravity">start</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:background">@color/lightSurface</item>
+        <item name="itemTextColor">@color/lightOnSurface</item>
+        <item name="itemIconTint">@color/lightOnSurface</item>
+    </style>
+
+    <style name="on_surface_light">
+        <item name="android:textColor">@color/lightOnSurface</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="on_primary_light">
+        <item name="android:textColor">@color/lightOnPrimary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="on_secondary_light">
+        <item name="android:textColor">@color/lightOnSecondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="header_on_surface_light" parent="on_surface_light">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowDy">1.0</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:shadowColor">#888</item>
+    </style>
+
+
+    <style name="subheader_on_surface_light" parent="header_on_surface_light">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="page_background_light">
+        <item name="android:background">@color/lightBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:padding">@dimen/calendar_padding</item>
+    </style>
+
+    <style name="surface_light">
+        <item name="android:background">@color/lightSurface</item>
+    </style>
+    <style name="surface_primary_light">
+        <item name="android:background">@color/lightPrimary</item>
+    </style>
+    <style name="surface_secondary_light">
+        <item name="android:background">@color/lightSecondary</item>
+    </style>
+
+    <style name="button_primary_light">
+        <item name="android:background">@color/lightPrimary</item>
+        <item name="android:textColor">@color/lightOnPrimary</item>
+    </style>
+    <style name="button_secondary_light">
+        <item name="android:background">@color/lightSecondary</item>
+        <item name="android:textColor">@color/lightOnSecondary</item>
+    </style>
+
+    <style name="toolbar_light">
+        <item name="android:background">@color/lightSurface</item>
+        <item name="titleTextColor">@color/lightOnSurface</item>
+        <item name="popupTheme">@style/AppTheme.PopupOverlayLight</item>
+    </style>
+
+    <style name="appbar_light">
+        <item name="android:theme">@style/AppTheme.AppBarOverlayLight</item>
+    </style>
+
 
 </resources>

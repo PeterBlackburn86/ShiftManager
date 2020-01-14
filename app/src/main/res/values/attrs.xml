@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="pageBackground" format="reference" />
+    <attr name="headerOnSurface" format="reference" />
+    <attr name="subHeaderOnSurface" format="reference" />
+    <attr name="textOnSurface" format="reference" />
+    <attr name="textOnPrimary" format="reference" />
+    <attr name="textOnSecondary" format="reference" />
+    <attr name="surface" format="reference" />
+    <attr name="surfacePrimary" format="reference" />
+    <attr name="surfaceSecondary" format="reference" />
+    <attr name="calendarLegend" format="reference" />
+    <attr name="buttonPrimary" format="reference" />
+    <attr name="buttonSecondary" format="reference" />
+    <attr name="navBar" format="reference" />
+    <attr name="appBar" format="reference" />
+    <attr name="toolBar" format="reference" />
+</resources>

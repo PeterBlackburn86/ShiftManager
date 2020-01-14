@@ -17,4 +17,26 @@
     <color name="darkOnErrorAlt">#000000</color>
 
 
+    <!--Light Theme Material Design-->
+    <color name="lightPrimary">#6200EE</color>
+    <color name="lightPrimaryVariant">#3700B3</color>
+    <color name="lightSecondary">#03DAC6</color>
+    <color name="lightSecondaryVariant">#018786</color>
+    <color name="lightBackground">#FFFFFF</color>
+    <color name="lightSurface">#EEEEEE</color>
+    <color name="lightError">#B00020</color>
+    <color name="lightOnPrimary">#FFFFFF</color>
+    <color name="lightOnSecondary">#000000</color>
+    <color name="lightOnBackground">#000000</color>
+    <color name="lightOnBackgroundAlt">#AAAAAA</color>
+    <color name="lightOnSurface">#000000</color>
+    <color name="lightOnSurfaceAlt">#AAAAAA</color>
+    <color name="lightOnError">#FFFFFF</color>
+    <color name="lightOnErrorAlt">#000000</color>
+
+    <!--GENERAL COLORS-->
+    <color name="calendarUnusedDays">#CF6679</color>
+    <color name="calendarUnusedDaysTxt">#000000</color>
+
+
 </resources>

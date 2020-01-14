@@ -3,12 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkBackground"
-    android:clickable="true"
-    android:focusable="true"
-    android:padding="@dimen/calendar_padding"
+    style="?pageBackground"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/calendarMonthSelector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/calendar_padding"
+        layout="@layout/calendar_month_selector"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -35,15 +38,13 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/calendar_padding"
         android:layout_marginBottom="@dimen/calendar_padding"
-        android:background="@color/darkSurface">
+        style="?surface">
 
         <TextView
             android:id="@+id/shiftTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@color/darkOnSurface"
-            android:textSize="22sp"
+            style="?headerOnSurface"
             android:textAlignment="textStart"
             android:layout_marginEnd="@dimen/calendar_padding"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +71,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/darkOnBackground"
-                android:textSize="22sp"
+                style="?headerOnSurface"
                 android:layout_margin="@dimen/calendar_padding"
                 android:text="@string/event_not_found"
                 android:gravity="center"/>

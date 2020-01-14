@@ -1,58 +1,153 @@
 package com.peterblackburn.shiftmanager.Calendar;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.view.View;
+import android.widget.RelativeLayout;
 
-import com.peterblackburn.shiftmanager.Calendar.Adapters.ShiftAdapter;
+import androidx.annotation.NonNull;
+
+import com.kizitonwose.calendarview.CalendarView;
+import com.kizitonwose.calendarview.model.CalendarDay;
+import com.kizitonwose.calendarview.model.CalendarMonth;
+import com.kizitonwose.calendarview.model.DayOwner;
+import com.kizitonwose.calendarview.ui.DayBinder;
+import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder;
 import com.peterblackburn.shiftmanager.Calendar.Interfaces.CalendarFactoryInterface;
-import com.peterblackburn.shiftmanager.Calendar.Interfaces.CalendarInterface;
-import com.peterblackburn.shiftmanager.Calendar.Interfaces.EventInterface;
-import com.peterblackburn.shiftmanager.Enums.MonthUpdate;
-import com.peterblackburn.shiftmanager.Realm.Helper.RealmHelper;
-import com.peterblackburn.shiftmanager.Realm.Objects.Shift;
+import com.peterblackburn.shiftmanager.Calendar.Views.DayViewContainer;
+import com.peterblackburn.shiftmanager.Calendar.Views.MonthViewContainer;
+import com.peterblackburn.shiftmanager.R;
 
+import org.threeten.bp.DayOfWeek;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.YearMonth;
+import org.threeten.bp.temporal.WeekFields;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-import io.realm.Realm;
-import io.realm.RealmResults;
-import io.realm.Sort;
-
-public class CalendarFactory implements CalendarInterface, EventInterface {
+public class CalendarFactory {
 
     private static CalendarFactory _instance;
 
     private ArrayList<CalendarFactoryInterface> _interfaces = new ArrayList<>();
     private LocalDate _selectedDate;
     private LocalDate _oldDate;
-    private ShiftAdapter _adapter;
     private YearMonth _currentMonth;
     private YearMonth _nextMonth;
     private YearMonth _prevMonth;
-    private Realm _realm;
+    private Context _context;
+    private CalendarView _calendarView;
 
-    private CalendarFactory(Context context) {
+    private CalendarFactory() {
+    }
+
+    public static CalendarFactory getInstance() {
+        if(_instance == null)
+            _instance = new CalendarFactory();
+
+        return _instance;
+    }
+
+    public void initCalendar(Context context, CalendarView calendarView, CalendarFactoryInterface calendarFactoryInterface) {
+        _context = context;
+        addFactoryInterface(calendarFactoryInterface);
+        _calendarView = calendarView;
+
         _currentMonth = YearMonth.now();
         _prevMonth = _currentMonth.minusMonths(1);
         _nextMonth = _currentMonth.plusMonths(1);
-        _adapter = new ShiftAdapter(context, this);
-        _realm = Realm.getDefaultInstance();
-    }
+        DayOfWeek firstDayOfWeek = WeekFields.of(Locale.getDefault()).getFirstDayOfWeek();
+        _calendarView.setup(_currentMonth, _currentMonth, firstDayOfWeek);
+        _calendarView.scrollToMonth(_currentMonth);
+        notifyMonthUpdated();
 
-    public static CalendarFactory getInstance(Context context) {
-        if(_instance == null)
-            _instance = new CalendarFactory(context);
+        _calendarView.setDayBinder(new DayBinder<DayViewContainer>() {
+            @Override
+            public DayViewContainer create(@NonNull View view) {
+                return new DayViewContainer(view);
+            }
 
-        return _instance;
+            @Override
+            public void bind(@NonNull DayViewContainer container, @NonNull CalendarDay day) {
+                container._dayText.setText(String.valueOf(day.getDate().getDayOfMonth()));
+                container._day = day;
+                RelativeLayout dayContainer = container._dayContainer;
+
+                Resources.Theme theme = _context.getTheme();
+                int[] attrs = {R.attr.surface, R.attr.surfacePrimary, R.attr.textOnSurface, R.attr.textOnPrimary};
+                TypedArray values = theme.obtainStyledAttributes(attrs);
+
+                int[] backAttrs = { android.R.attr.background };
+                int[] textAttrs = { android.R.attr.textColor };
+
+                int surfaceColor = Color.BLACK;
+                int primarySurfaceColor = Color.BLACK;
+                int textOnSurface = Color.BLACK;
+                int textOnPrimary = Color.BLACK;
+
+
+                for(int i=0; i < attrs.length; i++) {
+                    TypedArray results;
+
+                    switch (i) {
+                        case 0:
+                            results = theme.obtainStyledAttributes(values.getResourceId(i,0), backAttrs);
+                            surfaceColor = results.getColor(0, Color.BLACK);
+                            break;
+                        case 1:
+                            results = theme.obtainStyledAttributes(values.getResourceId(i,0), backAttrs);
+                            primarySurfaceColor = results.getColor(0, Color.BLACK);
+                            break;
+                        case 2:
+                            results = theme.obtainStyledAttributes(values.getResourceId(i,0), textAttrs);
+                            textOnSurface = results.getColor(0, Color.BLACK);
+                            break;
+                        case 3:
+                            results = theme.obtainStyledAttributes(values.getResourceId(i,0), textAttrs);
+                            textOnPrimary = results.getColor(0, Color.BLACK);
+                            break;
+                    }
+                }
+
+
+
+                if (day.getOwner() == DayOwner.THIS_MONTH) {
+
+                    if(day.getDate().equals(_selectedDate)) {
+                        dayContainer.setBackgroundColor(primarySurfaceColor);
+                        container._dayText.setTextColor(textOnPrimary);
+                    } else {
+                        dayContainer.setBackgroundColor(surfaceColor);
+                        container._dayText.setTextColor(textOnSurface);
+                    }
+
+                } else {
+                    container._dayText.setTextColor(_context.getColor(R.color.calendarUnusedDaysTxt));
+                    dayContainer.setBackgroundColor(_context.getColor(R.color.calendarUnusedDays));
+                }
+
+            }
+        });
+        _calendarView.setMonthHeaderBinder(new MonthHeaderFooterBinder<MonthViewContainer>() {
+            @Override
+            public MonthViewContainer create(@NonNull View view) {
+                return new MonthViewContainer(view);
+            }
+
+            @Override
+            public void bind(@NonNull MonthViewContainer container, @NonNull CalendarMonth calendarMonth) {
+//                container.monthYearTxt.setText(_context.getString(R.string.calendar_header_title, calendarMonth.getYearMonth().getMonth().toString(), String.valueOf(calendarMonth.getYearMonth().getYear())));
+            }
+        });
     }
 
     public YearMonth getCurrentMonth() { return _currentMonth; }
     public YearMonth getNextMonth() { return _nextMonth; }
     public YearMonth getPrevMonth() { return _prevMonth; }
     public LocalDate getSelectedDate() { return _selectedDate; }
-    public ShiftAdapter getAdapter() { return _adapter; }
 
     public void addFactoryInterface(CalendarFactoryInterface calendarInterface) {
         if(!_interfaces.contains(calendarInterface)) {
@@ -66,24 +161,28 @@ public class CalendarFactory implements CalendarInterface, EventInterface {
         }
     }
 
-    public void updateMonth(MonthUpdate monthUpdate) {
-        switch (monthUpdate) {
-            case NEXT_MONTH:
-                _prevMonth = _currentMonth;
-                _currentMonth = _nextMonth;
-                _nextMonth = _currentMonth.plusMonths(1);
-                break;
-            case PREVIOUS_MONTH:
-                _nextMonth = _currentMonth;
-                _currentMonth = _prevMonth;
-                _prevMonth = _currentMonth.minusMonths(1);
-                break;
-        }if(_currentMonth.atDay(LocalDate.now().getDayOfMonth()).equals(LocalDate.now())) {
-            selectedDate(LocalDate.now());
+    public void increaseMonth() {
+        _prevMonth = _currentMonth;
+        _currentMonth = _nextMonth;
+        _nextMonth = _currentMonth.plusMonths(1);
+        updateMonth();
+    }
+
+    public void decreaseMonth() {
+        _nextMonth = _currentMonth;
+        _currentMonth = _prevMonth;
+        _prevMonth = _currentMonth.minusMonths(1);
+        updateMonth();
+    }
+    private void updateMonth() {
+        if(_currentMonth.atDay(LocalDate.now().getDayOfMonth()).equals(LocalDate.now())) {
+            setSelectedDate(LocalDate.now());
         } else {
-            selectedDate(_currentMonth.atDay(1));
+            setSelectedDate(_currentMonth.atDay(1));
         }
-        updateShifts();
+        _calendarView.updateMonthRange(_currentMonth, _currentMonth);
+        _calendarView.scrollToMonth(_currentMonth);
+        _calendarView.notifyCalendarChanged();
         notifyMonthUpdated();
     }
     private void notifyMonthUpdated() {
@@ -92,8 +191,7 @@ public class CalendarFactory implements CalendarInterface, EventInterface {
         }
     }
 
-    @Override
-    public void selectedDate(LocalDate date) {
+    public void setSelectedDate(LocalDate date) {
         if(_selectedDate == null) {
             _selectedDate = date;
         } else {
@@ -102,7 +200,9 @@ public class CalendarFactory implements CalendarInterface, EventInterface {
                 _selectedDate = date;
             }
         }
-        updateShifts();
+        if(_oldDate != null)
+            _calendarView.notifyDateChanged(_oldDate);
+        _calendarView.notifyDateChanged(_selectedDate);
         notifyDateChanged();
     }
     private void notifyDateChanged() {
@@ -111,27 +211,7 @@ public class CalendarFactory implements CalendarInterface, EventInterface {
         }
     }
 
-    @Override
-    public void removeShift(Shift shift) {
-        RealmHelper.getInstance().deleteShift(shift);
-        updateShifts();
-        notifyShiftRemoved();
-    }
-    private void notifyShiftRemoved() {
-        for(CalendarFactoryInterface cfInterface : _interfaces) {
-            cfInterface.onShiftRemoved();
-        }
-    }
 
-    public void updateShifts() {
 
-        final RealmResults<Shift> shiftResults = _realm.where(Shift.class).contains("startTime", _selectedDate.toString()).findAll().sort("startTime", Sort.ASCENDING);
-        _adapter.updateShifts(shiftResults);
-        notifyShiftsUpdated(shiftResults.size());
-    }
-    private void notifyShiftsUpdated(int results) {
-        for(CalendarFactoryInterface cfInterface : _interfaces) {
-            cfInterface.onShiftsUpdated(results);
-        }
-    }
+
 }

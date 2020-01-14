@@ -1,56 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="14dp"
-        android:background="@color/darkSurface">
-
-        <ImageView
-            android:id="@+id/prevMonthImg"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="22dp"
-            android:background="@color/darkSurface"
-            android:tint="@color/darkOnSurface"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_chevron_left"
-            android:onClick="updateMonth"/>
-
-        <TextView
-            android:id="@+id/monthYearTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@color/darkOnSurface"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/nextMonthImg"
-            app:layout_constraintStart_toEndOf="@id/prevMonthImg"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/nextMonthImg"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@color/darkSurface"
-            android:tint="@color/darkOnSurface"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_chevron_right"
-            android:onClick="updateMonth" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <include
         layout="@layout/calendar_day_legend"
         android:layout_width="match_parent"

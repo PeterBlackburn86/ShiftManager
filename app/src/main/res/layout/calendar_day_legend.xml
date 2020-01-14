@@ -2,39 +2,39 @@
     android:id="@+id/legendLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    style="?surface"
     android:gravity="center"
     android:orientation="horizontal"
-    android:background="@color/darkSurface"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:weightSum="7">
 
     <TextView
-        style="@style/calendar_legend_headers"
+        style="?attr/calendarLegend"
         android:text="@string/calendar_legend_monday" />
 
     <TextView
-        style="@style/calendar_legend_headers"
+        style="?attr/calendarLegend"
         android:text="@string/calendar_legend_tuesday" />
 
     <TextView
-        style="@style/calendar_legend_headers"
+        style="?attr/calendarLegend"
         android:text="@string/calendar_legend_wednesday" />
 
     <TextView
-        style="@style/calendar_legend_headers"
+        style="?attr/calendarLegend"
         android:text="@string/calendar_legend_thursday" />
 
     <TextView
-        style="@style/calendar_legend_headers"
+        style="?attr/calendarLegend"
         android:text="@string/calendar_legend_friday" />
 
     <TextView
-        style="@style/calendar_legend_headers"
+        style="?attr/calendarLegend"
         android:text="@string/calendar_legend_saturday" />
 
     <TextView
-        style="@style/calendar_legend_headers"
+        style="?attr/calendarLegend"
         android:text="@string/calendar_legend_sunday" />
 
 </LinearLayout>

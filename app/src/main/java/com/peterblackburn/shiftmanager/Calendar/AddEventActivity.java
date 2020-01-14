@@ -34,15 +34,16 @@ public class AddEventActivity extends FragmentActivity implements TimeDateInterf
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_MaterialDark);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_add_activity);
 
         Intent intent = getIntent();
 
-        selectedDate = intent.getStringExtra("selectedDate");
-//        System.out.println("SELECTED DATE:" + selectedDate + " | SIZE:" + selectedDate.length());
+        selectedDate = intent.getStringExtra("setSelectedDate");
+//        System.out.println("SELECTED DATE:" + setSelectedDate + " | SIZE:" + setSelectedDate.length());
         date = LocalDate.parse(selectedDate);
-//        date = LocalDateTime.parse(selectedDate).toLocalDate();
+//        date = LocalDateTime.parse(setSelectedDate).toLocalDate();
 
         addShiftBtn = findViewById(R.id.submitShiftBtn);
         addShiftDate = findViewById(R.id.addShiftDate);

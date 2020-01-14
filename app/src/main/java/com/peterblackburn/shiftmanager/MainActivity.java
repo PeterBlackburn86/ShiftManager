@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.peterblackburn.shiftmanager.Calendar.CalendarFactory;
 import com.peterblackburn.shiftmanager.Fragments.CalendarFragment;
-import com.peterblackburn.shiftmanager.Enums.MonthUpdate;
 import com.peterblackburn.shiftmanager.Fragments.BaseFragment;
 import com.peterblackburn.shiftmanager.Fragments.HomeFragment;
 
@@ -27,8 +26,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_MaterialDark);
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.main_activity);
 
         //SETUP NAVIGATION DRAWER AND TOGGLE BUTTON
@@ -107,10 +106,10 @@ public class MainActivity extends AppCompatActivity
     public void updateMonth(View view) {
         switch (view.getId()) {
             case R.id.prevMonthImg:
-                CalendarFactory.getInstance(this).updateMonth(MonthUpdate.PREVIOUS_MONTH);
+                CalendarFactory.getInstance().decreaseMonth();
                 break;
             case R.id.nextMonthImg:
-                CalendarFactory.getInstance(this).updateMonth(MonthUpdate.NEXT_MONTH);
+                CalendarFactory.getInstance().increaseMonth();
                 break;
         }
     }

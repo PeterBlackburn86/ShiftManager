@@ -1,4 +1,4 @@
-package com.peterblackburn.shiftmanager.Calendar.Adapters;
+package com.peterblackburn.shiftmanager.Events.Adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.peterblackburn.shiftmanager.Calendar.Interfaces.EventInterface;
+import com.peterblackburn.shiftmanager.Events.Interfaces.EventInterface;
 import com.peterblackburn.shiftmanager.R;
 import com.peterblackburn.shiftmanager.Realm.Objects.Shift;
 import com.peterblackburn.shiftmanager.ShiftApplication;
@@ -22,13 +22,13 @@ import java.util.ArrayList;
 
 import io.realm.RealmResults;
 
-public class ShiftAdapter extends RecyclerView.Adapter<ShiftAdapter.ShiftViewHolder> {
+public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ShiftViewHolder> {
 
     private ArrayList<Shift> shifts = new ArrayList<>();
     private Context context;
     private EventInterface _interface;
 
-    public ShiftAdapter(Context context, EventInterface _interface) {
+    public EventAdapter(Context context, EventInterface _interface) {
         this.context = context;
         this._interface = _interface;
     }
@@ -92,7 +92,6 @@ public class ShiftAdapter extends RecyclerView.Adapter<ShiftAdapter.ShiftViewHol
                         eventInterface.removeShift(shift);
                 }
             });
-//            System.out.println("ID: " + shift.getId());
         }
     }
 }

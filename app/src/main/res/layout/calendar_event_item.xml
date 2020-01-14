@@ -5,23 +5,27 @@
     android:layout_height="wrap_content"
     android:background="@color/darkSurface">
 
-
-    <TextView
-        android:id="@+id/eventDateText"
+    <FrameLayout
+        android:id="@+id/eventDateCont"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/darkPrimary"
-        android:gravity="center"
-        android:lineSpacingExtra="2.5dp"
-        android:textAllCaps="true"
-        android:textColor="@color/darkOnPrimary"
-        android:textSize="12sp"
+        style="?surfacePrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.150"/>
+        app:layout_constraintWidth_percent="0.150">
+
+        <TextView
+            android:id="@+id/eventDateText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            style="?textOnPrimary"
+            android:lineSpacingExtra="2.5dp"
+            android:textAllCaps="true"/>
+    </FrameLayout>
 
     <!--<FrameLayout-->
         <!--android:id="@+id/eventStartImage"-->
@@ -45,36 +49,34 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:id="@+id/eventStartCont"
-        app:layout_constraintBottom_toBottomOf="@id/eventDateText"
-        app:layout_constraintStart_toEndOf="@id/eventDateText"
-        app:layout_constraintTop_toTopOf="@id/eventDateText"
+        app:layout_constraintBottom_toBottomOf="@id/eventDateCont"
+        app:layout_constraintStart_toEndOf="@id/eventDateCont"
+        app:layout_constraintTop_toTopOf="@id/eventDateCont"
         app:layout_constraintEnd_toStartOf="@+id/eventControlsCont"
-        android:background="@color/darkSurface"
+        style="?surface"
         android:padding="5dp"
         android:weightSum="2">
         <TextView
             android:fontFamily="sans-serif-black"
             android:layout_width="match_parent"
             android:id="@+id/eventType"
+            style="?textOnSurface"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:lineSpacingExtra="2.5dp"
-            android:textAllCaps="true"
-            android:textColor="@color/darkOnSurface"
-            android:textSize="13sp" />
+            android:textAllCaps="true" />
 
         <TextView
             android:fontFamily="sans-serif-black"
             android:layout_width="match_parent"
             android:id="@+id/eventTimeTxt"
+            style="?textOnSurface"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:lineSpacingExtra="2.5dp"
-            android:textAllCaps="true"
-            android:textColor="@color/darkOnSurface"
-            android:textSize="13sp" />
+            android:textAllCaps="true" />
 
     </LinearLayout>
 
@@ -84,7 +86,7 @@
         android:orientation="horizontal"
         android:id="@+id/eventControlsCont"
         android:gravity="center"
-        android:background="@color/darkSurface"
+        style="?surface"
         app:layout_constraintBottom_toBottomOf="@id/eventStartCont"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/eventStartCont">
@@ -112,6 +114,5 @@
             android:layout_margin="5dp"
             app:srcCompat="@drawable/material_delete_light" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

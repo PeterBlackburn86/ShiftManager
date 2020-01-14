@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/darkPrimary</item>
+        <item name="colorPrimaryDark">@color/darkPrimary</item>
+        <item name="colorAccent">@color/darkSecondary</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlayDark" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlayDark" parent="ThemeOverlay.AppCompat.Dark" />
+
+
+    <style name="AppTheme.AppBarOverlayLight" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlayLight" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.MaterialDark" parent="AppTheme.NoActionBar">
+
+        <!--SURFACE STYLES-->
+        <item name="pageBackground">@style/page_background_dark</item>
+        <item name="surface">@style/surface_dark</item>
+        <item name="surfacePrimary">@style/surface_primary_dark</item>
+        <item name="surfaceSecondary">@style/surface_secondary_dark</item>
+
+        <!--TEXT STYLES-->
+        <item name="textOnSurface">@style/on_surface_dark</item>
+        <item name="textOnPrimary">@style/on_primary_dark</item>
+        <item name="textOnSecondary">@style/on_secondary_dark</item>
+        <item name="headerOnSurface">@style/header_on_surface_dark</item>
+        <item name="subHeaderOnSurface">@style/subheader_on_surface_dark</item>
+
+        <!--BUTTON STYLES-->
+        <item name="buttonPrimary">@style/button_primary_dark</item>
+        <item name="buttonSecondary">@style/button_secondary_dark</item>
+
+        <!--CALENDAR STYLES-->
+        <item name="calendarLegend">@style/calendar_legend_dark</item>
+
+        <!--NAV BAR STYLES-->
+        <item name="navBar">@style/nav_dark</item>
+
+        <!--TOOL BAR THEMES-->
+        <item name="toolBar">@style/toolbar_dark</item>
+        <item name="appBar">@style/appbar_dark</item>
+
+    </style>
+
+    <style name="Theme.MaterialLight" parent="AppTheme.NoActionBar">
+
+        <!--SURFACE STYLES-->
+        <item name="pageBackground">@style/page_background_light</item>
+        <item name="surface">@style/surface_light</item>
+        <item name="surfacePrimary">@style/surface_primary_light</item>
+        <item name="surfaceSecondary">@style/surface_secondary_light</item>
+
+        <!--TEXT STYLES-->
+        <item name="textOnSurface">@style/on_surface_light</item>
+        <item name="textOnPrimary">@style/on_primary_light</item>
+        <item name="textOnSecondary">@style/on_secondary_light</item>
+        <item name="headerOnSurface">@style/header_on_surface_light</item>
+        <item name="subHeaderOnSurface">@style/subheader_on_surface_light</item>
+
+        <!--BUTTON STYLES-->
+        <item name="buttonPrimary">@style/button_primary_light</item>
+        <item name="buttonSecondary">@style/button_secondary_light</item>
+
+        <!--CALENDAR STYLES-->
+        <item name="calendarLegend">@style/calendar_legend_light</item>
+
+        <!--NAV BAR STYLES-->
+        <item name="navBar">@style/nav_light</item>
+
+        <!--TOOL BAR THEMES-->
+        <item name="toolBar">@style/toolbar_light</item>
+        <item name="appBar">@style/appbar_light</item>
+
+    </style>
+
+</resources>

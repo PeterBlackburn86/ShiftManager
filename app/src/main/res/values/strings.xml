@@ -27,8 +27,17 @@
     <string name="calendar_legend_saturday">sat</string>
     <string name="calendar_legend_sunday">sun</string>
 
+    <!--ADD EVENT STRINGS-->
+    <string name="title_activity_add_event">Add Event</string>
+    <string name="add_event_title">Add an event</string>
+    <string name="add_event_help">Click on each value to change it</string>
+    <string name="add_event_details_header">Event Details</string>
+    <string name="add_event_date">Event Date</string>
+    <string name="add_event_start">Start Time</string>
+    <string name="add_event_end">End Time</string>
+    <string name="add_event_submit">Add Event</string>
+
     <!--EVENT STRINGS-->
     <string name="event_time">%1$s - %2$s</string>
     <string name="event_type">%1$s (%2$s)</string>
-    <string name="title_activity_add_event">AddEventActivity</string>
 </resources>
