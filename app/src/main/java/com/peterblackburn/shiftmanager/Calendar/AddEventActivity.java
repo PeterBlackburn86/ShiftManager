@@ -2,35 +2,74 @@ package com.peterblackburn.shiftmanager.Calendar;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
-
 import com.peterblackburn.shiftmanager.Calendar.Interfaces.TimeDateInterface;
+import com.peterblackburn.shiftmanager.Events.Enums.EventType;
+import com.peterblackburn.shiftmanager.Events.Models.Break;
+import com.peterblackburn.shiftmanager.Events.Models.Event;
+import com.peterblackburn.shiftmanager.Events.Models.EventTemplate;
 import com.peterblackburn.shiftmanager.Fragments.TimePickerFragment;
-import com.peterblackburn.shiftmanager.Realm.Helper.RealmHelper;
+import com.peterblackburn.shiftmanager.RealmHelper;
 import com.peterblackburn.shiftmanager.R;
-import com.peterblackburn.shiftmanager.Realm.Objects.Shift;
-
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AddEventActivity extends FragmentActivity implements TimeDateInterface {
 
-    TextView addShiftDate;
-    TextView addShiftStartTime;
-    TextView addShiftEndTime;
-    Button addShiftBtn;
+    private static final String EVENT_START_TIME = "eventStartTime";
+    private static final String EVENT_END_TIME = "eventEndTime";
+    private static final String BREAK_START_TIME = "breakStartTime";
+    private static final String BREAK_END_TIME = "breakEndTime";
 
-    LocalDate date;
-    LocalTime startTime = LocalTime.now();
-    LocalTime endTime = LocalTime.now();
-    String selectedDate;
+    private ArrayList<Break> tempBreaks = new ArrayList<>();
+    Switch _addEventAllDay;
+    Switch _addBreakIsPaid;
+    Spinner _addEventType;
+    LinearLayout _addEventStartContainer;
+    LinearLayout _addEventEndContainer;
+    LinearLayout _addEventBreakContainer;
+    LinearLayout _addEventDateContainer;
+    LinearLayout _templateNameContainer;
+    TextView _addEventDate;
+    TextView _addEventStartTime;
+    TextView _addEventEndTime;
+    TextView _addBreakStartTime;
+    TextView _addBreakEndTime;
+    TextView _addEventTitle;
+    Button _addEventBtn;
+    Button _addBreakBtn;
+    EditText _templateName;
+
+    LocalDate _date;
+    LocalTime _eventStartTime = LocalTime.now();
+    LocalTime _eventEndTime = LocalTime.now();
+    LocalTime _breakStartTime = LocalTime.now();
+    LocalTime _breakEndTime = LocalTime.now();
+    boolean _isAllDay;
+    boolean _isBreakPaid;
+    boolean _isTemplate;
+    EventType _eventType;
+    String _selectedDate;
+    String _templateNameString;
+    List<EventType> _typeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,56 +78,214 @@ public class AddEventActivity extends FragmentActivity implements TimeDateInterf
         setContentView(R.layout.event_add_activity);
 
         Intent intent = getIntent();
+        _selectedDate = intent.getStringExtra("setSelectedDate");
+        if(_selectedDate.equals(""))
+            _selectedDate = null;
+        _isTemplate = intent.getBooleanExtra("setIsTemplate", false);
 
-        selectedDate = intent.getStringExtra("setSelectedDate");
-//        System.out.println("SELECTED DATE:" + setSelectedDate + " | SIZE:" + setSelectedDate.length());
-        date = LocalDate.parse(selectedDate);
-//        date = LocalDateTime.parse(setSelectedDate).toLocalDate();
+        if(_selectedDate != null)
+            _date = LocalDate.parse(_selectedDate);
+        else
+            _date = LocalDate.now();
 
-        addShiftBtn = findViewById(R.id.submitShiftBtn);
-        addShiftDate = findViewById(R.id.addShiftDate);
-        addShiftStartTime = findViewById(R.id.addShiftStartTime);
-        addShiftEndTime = findViewById(R.id.addShiftEndTime);
+        _addEventAllDay = findViewById(R.id.addEventAllDay);
+        _addEventType = findViewById(R.id.addEventType);
+        _addEventStartContainer = findViewById(R.id.addEventStartContainer);
+        _addEventEndContainer = findViewById(R.id.addEventEndContainer);
+        _addEventBtn = findViewById(R.id.submitEventBtn);
+        _addEventDate = findViewById(R.id.addEventDate);
+        _addEventStartTime = findViewById(R.id.addEventStartTime);
+        _addEventEndTime = findViewById(R.id.addEventEndTime);
+        _addEventBreakContainer = findViewById(R.id.addEventBreakContainer);
+        _addBreakIsPaid = findViewById(R.id.addBreakIsPaid);
+        _addBreakStartTime = findViewById(R.id.addBreakStartTime);
+        _addBreakEndTime = findViewById(R.id.addBreakEndTime);
+        _addBreakBtn = findViewById(R.id.addBreakBtn);
+        _addEventTitle = findViewById(R.id.addEventTitle);
+        _addEventDateContainer = findViewById(R.id.addEventDateContainer);
+        _templateNameContainer = findViewById(R.id.templateNameContainer);
+        _templateName = findViewById(R.id.templateName);
 
-        addShiftDate.setText(date.toString());
+        if(!_isTemplate) {
+            _addEventDateContainer.setVisibility(View.VISIBLE);
+            _addEventDate.setText(_date.toString());
+            _addEventBtn.setText(R.string.add_event_submit);
+            _addEventTitle.setText(R.string.add_event_title);
+            _templateNameContainer.setVisibility(View.GONE);
+        } else {
+            _addEventDateContainer.setVisibility(View.GONE);
+            _addEventBtn.setText(R.string.create_event_template_submit);
+            _addEventTitle.setText(R.string.create_event_template_title);
+            _templateNameContainer.setVisibility(View.VISIBLE);
+        }
 
-        addShiftStartTime.setOnClickListener(new View.OnClickListener() {
+        _typeList = new ArrayList<>(Arrays.asList(EventType.values()));
+
+
+
+        ArrayAdapter<EventType> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, _typeList);
+        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        _addEventType.setAdapter(typeAdapter);
+
+        _addEventType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                _eventType = _typeList.get(i);
+
+                switch (_eventType) {
+                    case PAY_DAY:
+                        _addEventBreakContainer.setVisibility(View.GONE);
+                        _addEventAllDay.setChecked(true);
+                        break;
+                    case OVERTIME:
+                        _addEventBreakContainer.setVisibility(View.VISIBLE);
+                        break;
+                    case REGULAR_SHIFT:
+                        _addEventBreakContainer.setVisibility(View.VISIBLE);
+                        break;
+                }
+                System.out.println("SELECTED TYPE: " + _eventType.getReadableName());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        _addBreakIsPaid.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                _isBreakPaid = b;
+            }
+        });
+
+        _addEventAllDay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                _isAllDay = b;
+                if(_isAllDay) {
+                    _addEventStartContainer.setVisibility(View.GONE);
+                    _addEventEndContainer.setVisibility(View.GONE);
+                } else {
+                    _addEventStartContainer.setVisibility(View.VISIBLE);
+                    _addEventEndContainer.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        _addEventStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment timePicker = TimePickerFragment.newInstance("startTimePicker");
-                timePicker.show(getSupportFragmentManager(), "startTimePicker");
+                DialogFragment timePicker = TimePickerFragment.newInstance(EVENT_START_TIME);
+                timePicker.show(getSupportFragmentManager(), EVENT_START_TIME);
             }
         });
 
 
-        addShiftEndTime.setOnClickListener(new View.OnClickListener() {
+        _addEventEndTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment timePicker = TimePickerFragment.newInstance("endTimePicker");
-                timePicker.show(getSupportFragmentManager(), "endTimePicker");
+                DialogFragment timePicker = TimePickerFragment.newInstance(EVENT_END_TIME);
+                timePicker.show(getSupportFragmentManager(), EVENT_END_TIME);
+            }
+        });
+
+        _addBreakStartTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment timePicker = TimePickerFragment.newInstance(BREAK_START_TIME);
+                timePicker.show(getSupportFragmentManager(), BREAK_START_TIME);
             }
         });
 
 
-        addShiftBtn.setOnClickListener(new View.OnClickListener() {
+        _addBreakEndTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Shift shift = new Shift();
-                shift.setId(RealmHelper.getInstance().nextPrimaryKey(RealmHelper.SHIFT_TABLE));
+                DialogFragment timePicker = TimePickerFragment.newInstance(BREAK_END_TIME);
+                timePicker.show(getSupportFragmentManager(), BREAK_END_TIME);
+            }
+        });
 
-                LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
-                LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
-//                LocalDateTime startTime = LocalDateTime.parse(String.join(addShiftDate.getText() , addShiftStartTime.getText()));
-//                LocalDateTime endTime = LocalDateTime.parse(String.join(addShiftDate.getText() , addShiftEndTime.getText()));
+        _addEventBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                shift.setStartTime(startDateTime);
-                shift.setEndTime(endDateTime);
+                if(!_isTemplate) {
+                    Event event = new Event();
+                    event.setId(RealmHelper.getInstance().nextPrimaryKey(RealmHelper.EVENT_TABLE));
 
-                RealmHelper.getInstance().addShifts(shift);
+                    event.setIsAllDay(_isAllDay);
+                    event.setEventType(_eventType);
+                    event.setHasBreaks(tempBreaks.size()!=0);
+                    if(event.hasBreaks()) {
+                        for(Break b : tempBreaks) {
+                            event.addBreak(b);
+                        }
+                    }
+
+                    if(_isAllDay) {
+                        LocalDateTime startDateTime = LocalDateTime.of(_date, LocalTime.MIN);
+                        LocalDateTime endDateTime = LocalDateTime.of(_date, LocalTime.MAX);
+                        event.setStartTime(startDateTime);
+                        event.setEndTime(endDateTime);
+                    } else {
+                        LocalDateTime startDateTime = LocalDateTime.of(_date, _eventStartTime);
+                        LocalDateTime endDateTime = LocalDateTime.of(_date, _eventEndTime);
+                        event.setStartTime(startDateTime);
+                        event.setEndTime(endDateTime);
+                    }
+
+
+                    RealmHelper.getInstance().addEvents(event);
+                } else {
+                    EventTemplate template = new EventTemplate();
+                    template.setId(RealmHelper.getInstance().nextPrimaryKey(RealmHelper.TEMPLATE_TABLE));
+
+                    template.setTemplateName(_templateName.getText().toString());
+                    template.setIsAllDay(_isAllDay);
+                    template.setEventType(_eventType);
+                    template.setHasBreaks(tempBreaks.size()!=0);
+                    if(template.hasBreaks()) {
+                        for(Break b : tempBreaks) {
+                            template.addBreak(b);
+                        }
+                    }
+
+                    if(_isAllDay) {
+                        LocalDateTime startDateTime = LocalDateTime.of(_date, LocalTime.MIN);
+                        LocalDateTime endDateTime = LocalDateTime.of(_date, LocalTime.MAX);
+                        template.setStartTime(startDateTime);
+                        template.setEndTime(endDateTime);
+                    } else {
+                        LocalDateTime startDateTime = LocalDateTime.of(_date, _eventStartTime);
+                        LocalDateTime endDateTime = LocalDateTime.of(_date, _eventEndTime);
+                        template.setStartTime(startDateTime);
+                        template.setEndTime(endDateTime);
+                    }
+
+
+                    RealmHelper.getInstance().addEventTemplates(template);
+                }
+
                 finish();
             }
         });
+
+        _addBreakBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Break b = new Break();
+                b.setBreakStart(_breakStartTime);
+                b.setBreakEnd(_breakEndTime);
+                b.setBreakPaid(_isBreakPaid);
+                tempBreaks.add(b);
+            }
+        });
+
+        _addEventType.setSelection(0);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //
@@ -105,13 +302,21 @@ public class AddEventActivity extends FragmentActivity implements TimeDateInterf
     @Override
     public void onTimePicked(LocalTime time, String id) {
         switch (id) {
-            case "startTimePicker":
-                startTime = time;
-                addShiftStartTime.setText(startTime.toString());
+            case EVENT_START_TIME:
+                _eventStartTime = time;
+                _addEventStartTime.setText(_eventStartTime.toString());
                 break;
-            case "endTimePicker":
-                endTime = time;
-                addShiftEndTime.setText(endTime.toString());
+            case EVENT_END_TIME:
+                _eventEndTime = time;
+                _addEventEndTime.setText(_eventEndTime.toString());
+                break;
+            case BREAK_START_TIME:
+                _breakStartTime = time;
+                _addBreakStartTime.setText(_breakStartTime.toString());
+                break;
+            case BREAK_END_TIME:
+                _breakEndTime = time;
+                _addBreakEndTime.setText(_breakEndTime.toString());
                 break;
         }
     }

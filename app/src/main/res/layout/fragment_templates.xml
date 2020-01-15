@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="?pageBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/calendar_padding"
+        android:layout_marginBottom="@dimen/calendar_padding"
+        style="?surface">
+
+        <TextView
+            android:id="@+id/templateTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="?headerOnSurface"
+            android:textAlignment="textStart"
+            android:layout_marginEnd="@dimen/calendar_padding"
+            android:text="@string/template_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/addTemplateBtn"
+            app:layout_constraintBottom_toBottomOf="@+id/addTemplateBtn"
+            app:layout_constraintEnd_toStartOf="@+id/addTemplateBtn"/>
+
+        <ImageView
+            android:id="@+id/addTemplateBtn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/material_add_light"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/noTemplateContainer"
+        style="?surface">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="?headerOnSurface"
+            android:layout_margin="@dimen/calendar_padding"
+            android:text="@string/template_not_found"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/templateContainer"
+        style="?surface">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/templateRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="false"
+            android:layout_margin="0dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

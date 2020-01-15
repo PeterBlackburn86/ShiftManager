@@ -26,6 +26,7 @@
         <item name="surface">@style/surface_dark</item>
         <item name="surfacePrimary">@style/surface_primary_dark</item>
         <item name="surfaceSecondary">@style/surface_secondary_dark</item>
+        <item name="surfaceError">@style/surface_error_dark</item>
 
         <!--TEXT STYLES-->
         <item name="textOnSurface">@style/on_surface_dark</item>
@@ -57,6 +58,7 @@
         <item name="surface">@style/surface_light</item>
         <item name="surfacePrimary">@style/surface_primary_light</item>
         <item name="surfaceSecondary">@style/surface_secondary_light</item>
+        <item name="surfaceError">@style/surface_error_light</item>
 
         <!--TEXT STYLES-->
         <item name="textOnSurface">@style/on_surface_light</item>

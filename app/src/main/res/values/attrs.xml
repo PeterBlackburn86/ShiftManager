@@ -9,6 +9,7 @@
     <attr name="surface" format="reference" />
     <attr name="surfacePrimary" format="reference" />
     <attr name="surfaceSecondary" format="reference" />
+    <attr name="surfaceError" format="reference" />
     <attr name="calendarLegend" format="reference" />
     <attr name="buttonPrimary" format="reference" />
     <attr name="buttonSecondary" format="reference" />

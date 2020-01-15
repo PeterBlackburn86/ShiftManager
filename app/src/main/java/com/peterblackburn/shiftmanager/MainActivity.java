@@ -13,6 +13,7 @@ import com.peterblackburn.shiftmanager.Calendar.CalendarFactory;
 import com.peterblackburn.shiftmanager.Fragments.CalendarFragment;
 import com.peterblackburn.shiftmanager.Fragments.BaseFragment;
 import com.peterblackburn.shiftmanager.Fragments.HomeFragment;
+import com.peterblackburn.shiftmanager.Fragments.TemplateFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.Menu;
@@ -87,6 +88,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        switch (id) {
+            case R.id.nav_home:
+                setFragment(HomeFragment.getInstance());
+                break;
+            case R.id.nav_calendar:
+                setFragment(CalendarFragment.getInstance());
+                break;
+            case R.id.nav_templates:
+                setFragment(TemplateFragment.getInstance());
+                break;
+        }
         if (id == R.id.nav_home) {
             setFragment(HomeFragment.getInstance());
         } else if (id == R.id.nav_calendar) {

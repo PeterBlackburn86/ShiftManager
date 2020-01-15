@@ -19,10 +19,13 @@ import com.peterblackburn.shiftmanager.Calendar.CalendarFactory;
 import com.peterblackburn.shiftmanager.Calendar.Interfaces.CalendarFactoryInterface;
 import com.peterblackburn.shiftmanager.Events.EventFactory;
 import com.peterblackburn.shiftmanager.Events.Interfaces.EventFactoryInterface;
+import com.peterblackburn.shiftmanager.Events.Models.Event;
 import com.peterblackburn.shiftmanager.R;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.YearMonth;
 import org.threeten.bp.format.DateTimeFormatter;
+
+import java.util.ArrayList;
 
 public class CalendarFragment extends BaseFragment implements CalendarFactoryInterface, EventFactoryInterface {
 
@@ -57,7 +60,6 @@ public class CalendarFragment extends BaseFragment implements CalendarFactoryInt
         if (requestCode == ADD_SHIFT_CODE) {
             _eventFactory.updateShifts();
         }
-        System.out.println("ACTIVITY RESULT");
     }
 
 
@@ -65,8 +67,6 @@ public class CalendarFragment extends BaseFragment implements CalendarFactoryInt
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
-
-        System.out.println("CREATE VIEW");
         _calendarView = view.findViewById(R.id.calendarView);
         _shiftContainer = view.findViewById(R.id.shiftContainer);
         _noShiftContainer = view.findViewById(R.id.noShiftContainer);
@@ -79,13 +79,12 @@ public class CalendarFragment extends BaseFragment implements CalendarFactoryInt
 
     @Override
     public String getTitle() {
-        return "Shift Calendar";
+        return "Calendar";
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        System.out.println("ACTIVITY CREATED");
 
         //CALENDAR + EVENTS SETUP
         _calendarFactory = CalendarFactory.getInstance();
@@ -107,6 +106,7 @@ public class CalendarFragment extends BaseFragment implements CalendarFactoryInt
             public void onClick(View view) {
                 Intent intent = new Intent(_context, AddEventActivity.class);
                 intent.putExtra("setSelectedDate", _calendarFactory.getSelectedDate().toString());
+                intent.putExtra("setIsTemplate", false);
                 startActivityForResult(intent, ADD_SHIFT_CODE);
             }
         });
@@ -115,7 +115,6 @@ public class CalendarFragment extends BaseFragment implements CalendarFactoryInt
 
     @Override
     public void onAttach(@NonNull Context context) {
-        System.out.println("ON ATTACH");
         super.onAttach(context);
         _context = context;
         if(_calendarFactory != null && _eventFactory != null) {
@@ -126,7 +125,6 @@ public class CalendarFragment extends BaseFragment implements CalendarFactoryInt
 
     @Override
     public void onDetach() {
-        System.out.println("ON DETACH");
         super.onDetach();
         if(_calendarFactory != null && _eventFactory != null) {
             _calendarFactory.removeFactoryInterface(this);
@@ -143,24 +141,21 @@ public class CalendarFragment extends BaseFragment implements CalendarFactoryInt
 
     @Override
     public void onMonthUpdated(YearMonth previousMonth, YearMonth currentMonth, YearMonth nextMonth) {
-        System.out.println("ON MONTH UPDATED");
         _monthYearTxt.setText(_context.getString(R.string.calendar_header_title, currentMonth.getMonth().toString(), String.valueOf(currentMonth.getYear())));
     }
 
     @Override
     public void onShiftRemoved() {
-        System.out.println("ON SHIFT REMOVED");
+
     }
 
     @Override
     public void onShiftAdded() {
-        System.out.println("ON SHIFT ADDED");
+
     }
 
     @Override
     public void onShiftsUpdated(int results) {
-        System.out.println("ON SHIFT UPDATED");
-        System.out.println("RESULTS: " + results);
         if(results > 0) {
             _shiftContainer.setVisibility(View.VISIBLE);
             _noShiftContainer.setVisibility(View.GONE);

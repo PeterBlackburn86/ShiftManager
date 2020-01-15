@@ -12,6 +12,7 @@
     <!--NAV DRAWER MENU STRINGS-->
     <string name="menu_home">Home</string>
     <string name="menu_calendar">Calendar</string>
+    <string name="menu_templates">Templates</string>
 
     <!--CALENDAR STRINGS-->
     <string name="event_title">Events | %1$s</string>
@@ -32,10 +33,26 @@
     <string name="add_event_title">Add an event</string>
     <string name="add_event_help">Click on each value to change it</string>
     <string name="add_event_details_header">Event Details</string>
+    <string name="add_event_all_day">All Day?</string>
+    <string name="add_event_type">Event Type</string>
     <string name="add_event_date">Event Date</string>
     <string name="add_event_start">Start Time</string>
     <string name="add_event_end">End Time</string>
     <string name="add_event_submit">Add Event</string>
+    <string name="add_event_breaks_title">Break Details</string>
+    <string name="add_event_add_break">Add Break</string>
+    <string name="add_event_template_name">Template Name</string>
+    <string name="add_break_is_paid">Is Paid?</string>
+    <string name="add_break_start_time">Break Start</string>
+    <string name="add_break_End_time">Break End</string>
+
+    <!--CREATE EVENT TEMPLATE STRINGS-->
+    <string name="create_event_template_title">Create an event template</string>
+    <string name="create_event_template_submit">Create Template</string>
+
+    <!--TEMPLATE STRINGS-->
+    <string name="template_title">Event Templates</string>
+    <string name="template_not_found">No Templates Found</string>
 
     <!--EVENT STRINGS-->
     <string name="event_time">%1$s - %2$s</string>

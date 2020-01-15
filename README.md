@@ -1,5 +1,5 @@
 # ShiftManager
-Manage shift patterns, estimate payslips and keep track of all your overtime.
+Manage event patterns, estimate payslips and keep track of all your overtime.
 
 TODO List:
 
@@ -13,13 +13,13 @@ Important Tasks
 - [ ] View Events in More Detail
 - [ ] Allow Editing of Existing Events
 - [ ] Event Filtering and Sorting
-- [ ] Fully Implement Realm (in Progress)
+- [x] Fully Implement Realm
 - [ ] User Profiles (App Settings / Theme Settings / Personal Shift + Pay Settings)
 - [ ] Payslip Estimation
 
 Secondary Tasks
 
-- [ ] Make the App Look Pretty (in Progress)
-- [ ] Implement Theme Engine (in Progress)
-- [ ] Implement a Few Standard Themes for the Engine (Light, Dark Etc)
-- [ ] Shift Templates for Fasting Adding
+- [x] Make the App Look Pretty
+- [x] Implement Theme Engine (Theme Changing Complete, Custom Themes in Progress)
+- [x] Implement a Few Standard Themes for the Engine (Light, Dark Etc)
+- [x] Shift Templates for Fasting Adding

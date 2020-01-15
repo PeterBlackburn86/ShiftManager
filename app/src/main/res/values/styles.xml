@@ -64,6 +64,9 @@
     <style name="surface_secondary_dark">
         <item name="android:background">@color/darkSecondary</item>
     </style>
+    <style name="surface_error_dark">
+        <item name="android:background">@color/darkError</item>
+    </style>
 
     <style name="button_primary_dark">
         <item name="android:background">@color/darkPrimary</item>
@@ -147,6 +150,9 @@
     </style>
     <style name="surface_secondary_light">
         <item name="android:background">@color/lightSecondary</item>
+    </style>
+    <style name="surface_error_light">
+        <item name="android:background">@color/lightError</item>
     </style>
 
     <style name="button_primary_light">

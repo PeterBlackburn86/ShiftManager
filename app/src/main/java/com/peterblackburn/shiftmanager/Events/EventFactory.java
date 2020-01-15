@@ -9,8 +9,8 @@ import com.peterblackburn.shiftmanager.Calendar.CalendarFactory;
 import com.peterblackburn.shiftmanager.Events.Interfaces.EventInterface;
 import com.peterblackburn.shiftmanager.Events.Adapters.EventAdapter;
 import com.peterblackburn.shiftmanager.Events.Interfaces.EventFactoryInterface;
-import com.peterblackburn.shiftmanager.Realm.Helper.RealmHelper;
-import com.peterblackburn.shiftmanager.Realm.Objects.Shift;
+import com.peterblackburn.shiftmanager.Events.Models.Event;
+import com.peterblackburn.shiftmanager.RealmHelper;
 
 import org.threeten.bp.LocalDate;
 
@@ -54,8 +54,8 @@ public class EventFactory implements EventInterface {
     }
 
     @Override
-    public void removeShift(Shift shift) {
-        RealmHelper.getInstance().deleteShift(shift);
+    public void removeEvent(Event event) {
+        RealmHelper.getInstance().deleteShift(event);
         updateShifts();
         notifyShiftRemoved();
     }
@@ -86,13 +86,15 @@ public class EventFactory implements EventInterface {
     public void updateShifts() {
 
         LocalDate date = CalendarFactory.getInstance().getSelectedDate();
-        final RealmResults<Shift> shiftResults = _realm.where(Shift.class).contains("startTime", date.toString()).findAll().sort("startTime", Sort.ASCENDING);
-        _adapter.updateShifts(shiftResults);
-        notifyShiftsUpdated(shiftResults.size());
+        final RealmResults<Event> eventResults = _realm.where(Event.class).contains("startTime", date.toString()).findAll().sort("startTime", Sort.ASCENDING);
+        _adapter.updateEvents(eventResults);
+        notifyShiftsUpdated(eventResults.size());
     }
     private void notifyShiftsUpdated(int results) {
         for(EventFactoryInterface cfInterface : _interfaces) {
             cfInterface.onShiftsUpdated(results);
         }
     }
+
+    public ArrayList<Event> getEvents() { return _adapter.getEvents(); }
 }

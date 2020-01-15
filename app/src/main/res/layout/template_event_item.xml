@@ -3,46 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/darkSurface">
+    style="?surface">
 
     <FrameLayout
-        android:id="@+id/eventDateCont"
+        android:id="@+id/templateNameCont"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        style="?surfacePrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="H,1:1"
+        style="?surface"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.150">
+        app:layout_constraintTop_toTopOf="@+id/templateControls"
+        app:layout_constraintEnd_toStartOf="@+id/templateControls"
+        app:layout_constraintBottom_toBottomOf="@+id/templateControls">
 
         <TextView
-            android:id="@+id/eventDateText"
+            android:id="@+id/templateName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            style="?textOnPrimary"
-            android:lineSpacingExtra="2.5dp"
-            android:textAllCaps="true"/>
+            style="?headerOnSurface" />
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/eventStartCont"
-        app:layout_constraintBottom_toBottomOf="@id/eventDateCont"
-        app:layout_constraintStart_toEndOf="@id/eventDateCont"
-        app:layout_constraintTop_toTopOf="@id/eventDateCont"
-        app:layout_constraintEnd_toStartOf="@+id/eventControlsCont"
+        android:id="@+id/templateDetailsCont"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/templateNameCont"
+        app:layout_constraintEnd_toEndOf="parent"
         style="?surface"
         android:padding="5dp"
         android:weightSum="2">
         <TextView
             android:fontFamily="sans-serif-black"
             android:layout_width="match_parent"
-            android:id="@+id/eventType"
+            android:id="@+id/templateEventType"
             style="?textOnSurface"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -53,7 +49,7 @@
         <TextView
             android:fontFamily="sans-serif-black"
             android:layout_width="match_parent"
-            android:id="@+id/eventTimeTxt"
+            android:id="@+id/templateEventTimeTxt"
             style="?textOnSurface"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -64,24 +60,21 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/eventControlsCont"
+        android:id="@+id/templateControls"
         android:gravity="center"
         style="?surfaceError"
         android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/eventStartCont"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/eventStartCont"
-        app:layout_constraintDimensionRatio="W,1:1">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/removeEventBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/removeTemplateBtn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
             app:srcCompat="@drawable/material_delete_light" />
     </LinearLayout>
 
