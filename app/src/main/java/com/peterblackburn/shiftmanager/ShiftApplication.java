@@ -26,6 +26,7 @@ public class ShiftApplication extends Application {
 
         _instance = this;
         _res = getResources();
+
     }
 
     public static ShiftApplication getInstance() { return _instance; }

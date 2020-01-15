@@ -35,7 +35,7 @@
     <color name="lightOnErrorAlt">#000000</color>
 
     <!--GENERAL COLORS-->
-    <color name="calendarUnusedDays">#CF6679</color>
+    <color name="calendarUnusedDays">#44CF6679</color>
     <color name="calendarUnusedDaysTxt">#000000</color>
 
 

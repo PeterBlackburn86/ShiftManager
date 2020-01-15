@@ -30,8 +30,7 @@ public class TemplateFragment extends BaseFragment implements EventTemplateFacto
     private EventTemplateFactory _templateFactory;
     private Context _context;
 
-    private TemplateFragment() {
-
+    public  TemplateFragment() {
     }
 
     public static TemplateFragment getInstance() {

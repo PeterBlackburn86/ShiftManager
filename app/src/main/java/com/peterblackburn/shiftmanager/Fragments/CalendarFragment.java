@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.kizitonwose.calendarview.CalendarView;
 import com.peterblackburn.shiftmanager.Calendar.AddEventActivity;
@@ -19,15 +18,11 @@ import com.peterblackburn.shiftmanager.Calendar.CalendarFactory;
 import com.peterblackburn.shiftmanager.Calendar.Interfaces.CalendarFactoryInterface;
 import com.peterblackburn.shiftmanager.Events.EventFactory;
 import com.peterblackburn.shiftmanager.Events.Interfaces.EventFactoryInterface;
-import com.peterblackburn.shiftmanager.Events.Models.Event;
 import com.peterblackburn.shiftmanager.R;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.YearMonth;
 import org.threeten.bp.format.DateTimeFormatter;
-
-import java.util.ArrayList;
-
-public class CalendarFragment extends BaseFragment implements CalendarFactoryInterface, EventFactoryInterface {
+public class CalendarFragment extends BaseFragment<CalendarFragment> implements CalendarFactoryInterface, EventFactoryInterface {
 
     private static final int ADD_SHIFT_CODE = 1;
 

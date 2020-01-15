@@ -8,6 +8,10 @@
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
+<!--        <item name="android:windowLayoutInDisplayCutoutMode">-->
+<!--            never &lt;!&ndash; default, shortEdges, never &ndash;&gt;-->
+<!--        </item>-->
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

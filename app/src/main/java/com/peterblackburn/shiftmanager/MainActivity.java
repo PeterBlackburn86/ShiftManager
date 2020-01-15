@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.peterblackburn.shiftmanager.Calendar.CalendarFactory;
 import com.peterblackburn.shiftmanager.Fragments.CalendarFragment;
-import com.peterblackburn.shiftmanager.Fragments.BaseFragment;
+import com.peterblackburn.shiftmanager.Fragments.FragmentHelper;
 import com.peterblackburn.shiftmanager.Fragments.HomeFragment;
 import com.peterblackburn.shiftmanager.Fragments.TemplateFragment;
 
@@ -19,17 +19,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
+    private FragmentHelper _fragHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_MaterialDark);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        _fragHelper = FragmentHelper.getInstance(getSupportFragmentManager(), this);
 
         //SETUP NAVIGATION DRAWER AND TOGGLE BUTTON
         toolbar = findViewById(R.id.toolbar);
@@ -46,9 +48,10 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        if(!_fragHelper.loadLastFragment()) {
+            _fragHelper.loadFragment(HomeFragment.getInstance());
+        }
 
-        //ADD HOME FRAGMENT
-        setFragment(CalendarFragment.getInstance());
     }
 
     @Override
@@ -83,37 +86,8 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        switch (id) {
-            case R.id.nav_home:
-                setFragment(HomeFragment.getInstance());
-                break;
-            case R.id.nav_calendar:
-                setFragment(CalendarFragment.getInstance());
-                break;
-            case R.id.nav_templates:
-                setFragment(TemplateFragment.getInstance());
-                break;
-        }
-        if (id == R.id.nav_home) {
-            setFragment(HomeFragment.getInstance());
-        } else if (id == R.id.nav_calendar) {
-            setFragment(CalendarFragment.getInstance());
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
-    private void setFragment(BaseFragment fragment) {
-        getSupportFragmentManager().beginTransaction().
-                replace(R.id.fragmentContainer, fragment).commit();
-
-        toolbar.setTitle(fragment.getTitle());
-    }
 
     public void updateMonth(View view) {
         switch (view.getId()) {
@@ -124,5 +98,25 @@ public class MainActivity extends AppCompatActivity
                 CalendarFactory.getInstance().increaseMonth();
                 break;
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        System.out.println("MENU CLICK: " + menuItem.toString());
+        int id = menuItem.getItemId();
+        switch (id) {
+            case R.id.nav_home:
+                _fragHelper.loadFragment(HomeFragment.getInstance());
+                break;
+            case R.id.nav_calendar:
+                _fragHelper.loadFragment(CalendarFragment.getInstance());
+                break;
+            case R.id.nav_templates:
+                _fragHelper.loadFragment(TemplateFragment.getInstance());
+                break;
+        }
+//                toolbar.setTitle(_fragHelper.getLastFragmentTitle());
+        drawer.closeDrawer(GravityCompat.START);
+        return false;
     }
 }
