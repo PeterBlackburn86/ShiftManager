@@ -86,6 +86,14 @@
     <style name="appbar_dark">
         <item name="android:theme">@style/AppTheme.AppBarOverlayDark</item>
     </style>
+    <style name="month_selector_dark">
+        <item name="android:background">@color/darkSurface</item>
+        <item name="android:tint">@color/darkOnSurface</item>
+    </style>
+
+    <style name="add_event_dark">
+        <item name="android:src">@drawable/material_add_light</item>
+    </style>
 
     <!-- LIGHT THEME STYLES -->
     <style name="calendar_legend_light">
@@ -174,5 +182,13 @@
         <item name="android:theme">@style/AppTheme.AppBarOverlayLight</item>
     </style>
 
+    <style name="month_selector_light">
+        <item name="android:background">@color/lightSurface</item>
+        <item name="android:tint">@color/lightOnSurface</item>
+    </style>
+
+    <style name="add_event_light">
+        <item name="android:src">@drawable/material_add</item>
+    </style>
 
 </resources>

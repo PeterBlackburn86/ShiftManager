@@ -1,5 +1,7 @@
 package com.peterblackburn.shiftmanager;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,10 +18,12 @@ import com.peterblackburn.shiftmanager.Fragments.HomeFragment;
 import com.peterblackburn.shiftmanager.Fragments.TemplateFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.preference.PreferenceManager;
+
 import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -27,14 +31,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_MaterialDark);
+        if(ShiftApplication.getInstance().isDarkTheme())
+            setTheme(R.style.Theme_MaterialDark);
+        else
+            setTheme(R.style.Theme_MaterialLight);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_main);
 
         _fragHelper = FragmentHelper.getInstance(getSupportFragmentManager(), this);
 
         //SETUP NAVIGATION DRAWER AND TOGGLE BUTTON
         toolbar = findViewById(R.id.toolbar);
+//        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         NavigationView navigationView;
@@ -51,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(!_fragHelper.loadLastFragment()) {
             _fragHelper.loadFragment(HomeFragment.getInstance());
         }
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
     }
 
@@ -102,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        System.out.println("MENU CLICK: " + menuItem.toString());
         int id = menuItem.getItemId();
         switch (id) {
             case R.id.nav_home:
@@ -114,9 +124,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_templates:
                 _fragHelper.loadFragment(TemplateFragment.getInstance());
                 break;
+            case R.id.nav_settings:
+//                _fragHelper.loadFragment(PreferenceFragment.getInstance());
+                Intent intent = new Intent(this, PreferenceActivity.class);
+                startActivity(intent);
+                break;
         }
-//                toolbar.setTitle(_fragHelper.getLastFragmentTitle());
         drawer.closeDrawer(GravityCompat.START);
         return false;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        switch (s) {
+            case "pref_dark_theme":
+                recreate();
+                break;
+        }
     }
 }

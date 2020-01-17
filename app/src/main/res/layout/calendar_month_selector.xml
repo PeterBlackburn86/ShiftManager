@@ -13,12 +13,11 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginEnd="22dp"
-        android:background="@color/darkSurface"
-        android:tint="@color/darkOnSurface"
+        style="?monthSelector"
+        app:srcCompat="@drawable/ic_chevron_left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_chevron_left"
         android:onClick="updateMonth"/>
 
     <TextView
@@ -35,8 +34,7 @@
         android:id="@+id/nextMonthImg"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:background="@color/darkSurface"
-        android:tint="@color/darkOnSurface"
+        style="?monthSelector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

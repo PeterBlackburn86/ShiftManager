@@ -14,7 +14,7 @@ Important Tasks
 - [ ] Allow Editing of Existing Events
 - [ ] Event Filtering and Sorting
 - [x] Fully Implement Realm
-- [ ] User Profiles (App Settings / Theme Settings / Personal Shift + Pay Settings) (In Progress)
+- [ ] Settings (App Settings, Theme Settings, User Settings)
 - [ ] Payslip Estimation
 
 Secondary Tasks

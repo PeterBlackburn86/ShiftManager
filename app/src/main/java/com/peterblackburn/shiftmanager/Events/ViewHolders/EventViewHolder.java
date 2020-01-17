@@ -37,7 +37,7 @@ public class EventViewHolder extends BaseViewHolder {
         final Event event = (Event)object;
         final EventInterface eventInterface = (EventInterface)baseInterface;
 
-        Resources res = ShiftApplication.getRes();
+        Resources res = ShiftApplication.getInstance().getRes();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE'\n'dd MMM");
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
         String title = event.getStartTime().format(formatter);

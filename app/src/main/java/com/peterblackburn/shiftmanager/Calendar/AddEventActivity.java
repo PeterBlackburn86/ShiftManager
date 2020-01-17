@@ -2,11 +2,11 @@ package com.peterblackburn.shiftmanager.Calendar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +25,8 @@ import com.peterblackburn.shiftmanager.Events.Models.EventTemplate;
 import com.peterblackburn.shiftmanager.Fragments.TimePickerFragment;
 import com.peterblackburn.shiftmanager.RealmHelper;
 import com.peterblackburn.shiftmanager.R;
+import com.peterblackburn.shiftmanager.ShiftApplication;
+
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.LocalTime;
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddEventActivity extends FragmentActivity implements TimeDateInterface {
+public class AddEventActivity extends AppCompatActivity implements TimeDateInterface {
 
     private static final String EVENT_START_TIME = "eventStartTime";
     private static final String EVENT_END_TIME = "eventEndTime";
@@ -53,10 +55,11 @@ public class AddEventActivity extends FragmentActivity implements TimeDateInterf
     TextView _addEventEndTime;
     TextView _addBreakStartTime;
     TextView _addBreakEndTime;
-    TextView _addEventTitle;
+//    TextView _addEventTitle;
     Button _addEventBtn;
     Button _addBreakBtn;
     EditText _templateName;
+    Toolbar toolbar;
 
     LocalDate _date;
     LocalTime _eventStartTime = LocalTime.now();
@@ -68,14 +71,27 @@ public class AddEventActivity extends FragmentActivity implements TimeDateInterf
     boolean _isTemplate;
     EventType _eventType;
     String _selectedDate;
-    String _templateNameString;
     List<EventType> _typeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_MaterialDark);
+        if(ShiftApplication.getInstance().isDarkTheme())
+            setTheme(R.style.Theme_MaterialDark);
+        else
+            setTheme(R.style.Theme_MaterialLight);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.event_add_activity);
+        setContentView(R.layout.activity_add_event);
+
+
+        toolbar = findViewById(R.id.addEventToolbar);
+//        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
 
         Intent intent = getIntent();
         _selectedDate = intent.getStringExtra("setSelectedDate");
@@ -101,7 +117,7 @@ public class AddEventActivity extends FragmentActivity implements TimeDateInterf
         _addBreakStartTime = findViewById(R.id.addBreakStartTime);
         _addBreakEndTime = findViewById(R.id.addBreakEndTime);
         _addBreakBtn = findViewById(R.id.addBreakBtn);
-        _addEventTitle = findViewById(R.id.addEventTitle);
+//        _addEventTitle = findViewById(R.id.addEventTitle);
         _addEventDateContainer = findViewById(R.id.addEventDateContainer);
         _templateNameContainer = findViewById(R.id.templateNameContainer);
         _templateName = findViewById(R.id.templateName);
@@ -110,12 +126,12 @@ public class AddEventActivity extends FragmentActivity implements TimeDateInterf
             _addEventDateContainer.setVisibility(View.VISIBLE);
             _addEventDate.setText(_date.toString());
             _addEventBtn.setText(R.string.add_event_submit);
-            _addEventTitle.setText(R.string.add_event_title);
+//            _addEventTitle.setText(R.string.add_event_title);
             _templateNameContainer.setVisibility(View.GONE);
         } else {
             _addEventDateContainer.setVisibility(View.GONE);
             _addEventBtn.setText(R.string.create_event_template_submit);
-            _addEventTitle.setText(R.string.create_event_template_title);
+//            _addEventTitle.setText(R.string.create_event_template_title);
             _templateNameContainer.setVisibility(View.VISIBLE);
         }
 
@@ -319,5 +335,11 @@ public class AddEventActivity extends FragmentActivity implements TimeDateInterf
                 _addBreakEndTime.setText(_breakEndTime.toString());
                 break;
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

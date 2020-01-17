@@ -1,6 +1,8 @@
 package com.peterblackburn.shiftmanager.Fragments;
 
 import android.content.Context;
+
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.peterblackburn.shiftmanager.R;
 
@@ -40,18 +42,24 @@ public class FragmentHelper {
     }
 
     public boolean loadFragment(BaseFragment fragment) {
+        return loadFrag(fragment);
+    }
+
+    private boolean loadFrag(BaseFragment fragment) {
         if(fragment != null && _manager != null) {
             _manager.beginTransaction().
                     replace(R.id.fragmentContainer, fragment).commit();
-            _lastFragment = fragment;
+
+                _lastFragment = fragment;
+
             return true;
         }
         return false;
     }
 
-    public String getLastFragmentTitle() {
-        return _lastFragment.getTitle();
-    }
+//    public String getLastFragmentTitle() {
+//        return _lastFragment.getTitle();
+//    }
 
 
 }

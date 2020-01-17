@@ -38,7 +38,7 @@ public class EventTemplateViewHolder extends BaseViewHolder {
         final EventTemplate template = (EventTemplate)object;
         final TemplateInterface templateInterface = (TemplateInterface) baseInterface;
 
-        Resources res = ShiftApplication.getRes();
+        Resources res = ShiftApplication.getInstance().getRes();
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
         String startTime = template.getStartTime().format(formatterTime);
         String endTime = template.getEndTime().format(formatterTime);

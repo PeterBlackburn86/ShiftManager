@@ -16,4 +16,6 @@
     <attr name="navBar" format="reference" />
     <attr name="appBar" format="reference" />
     <attr name="toolBar" format="reference" />
+    <attr name="monthSelector" format="reference" />
+    <attr name="addEventButton" format="reference" />
 </resources>

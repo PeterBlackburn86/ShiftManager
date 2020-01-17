@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".PreferenceActivity"
+            android:label="@string/title_activity_preference"
+            android:theme="@style/AppTheme"></activity>
+        <activity
             android:name=".Calendar.AddEventActivity"
             android:label="@string/title_activity_add_event" />
         <activity

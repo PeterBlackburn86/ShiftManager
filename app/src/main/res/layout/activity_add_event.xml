@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="?pageBackground"
+    android:padding="0dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/addEventAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?appBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/addEventToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            style="?toolBar"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            style="?surface"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:padding="10dp">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/addEventTitle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="?headerOnSurface"-->
+<!--                android:text="@string/add_event_title"-->
+<!--                android:gravity="center"-->
+<!--                android:lineSpacingExtra="2.5dp"-->
+<!--                android:textAllCaps="true" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="?textOnSurface"-->
+<!--                android:text="@string/add_event_help"-->
+<!--                android:gravity="center"-->
+<!--                android:lineSpacingExtra="2.5dp"-->
+<!--                android:textAllCaps="true" />-->
+
+<!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:id="@+id/templateNameContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?surface"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/templateNameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?subHeaderOnSurface"
+                android:labelFor="@+id/addEventStartTime"
+                android:text="@string/add_event_template_name"
+                android:gravity="start|center"
+                android:textAllCaps="true"
+                android:padding="10dp"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/templateName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?textOnSurface"
+                android:gravity="start|center"
+                android:lineSpacingExtra="2.5dp"
+                android:textAllCaps="true"
+                android:padding="10dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?surface"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?headerOnSurface"
+                android:text="@string/add_event_details_header"
+                android:gravity="center"
+                android:lineSpacingExtra="2.5dp"
+                android:textAllCaps="true"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?surface"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/addEventTypeLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?subHeaderOnSurface"
+                    android:labelFor="@+id/addEventStartTime"
+                    android:text="@string/add_event_type"
+                    android:gravity="start|center"
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:id="@+id/addEventType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?textOnSurface"
+                    android:gravity="start|center"
+                    android:lineSpacingExtra="2.5dp"
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/addEventDateContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?surface"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/addEventDateLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?subHeaderOnSurface"
+                    android:labelFor="@+id/addEventStartTime"
+                    android:text="@string/add_event_date"
+                    android:gravity="start|center"
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/addEventDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?textOnSurface"
+                    android:gravity="start|center"
+                    android:lineSpacingExtra="2.5dp"
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/addEventAllDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?textOnSurface"
+                android:gravity="start|center"
+                android:textAllCaps="true"
+                android:padding="10dp"
+                android:text="@string/add_event_all_day" />
+
+            <LinearLayout
+                android:id="@+id/addEventStartContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?surface"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/addEventStartLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="?subHeaderOnSurface"
+                    android:labelFor="@+id/addEventStartTime"
+                    android:text="@string/add_event_start"
+                    android:gravity="start|center"
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/addEventStartTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="?textOnSurface"
+                    android:gravity="start|center"
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/addEventEndContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?surface"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/addEventEndLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="?subHeaderOnSurface"
+                    android:labelFor="@+id/addEventStartTime"
+                    android:text="@string/add_event_end"
+                    android:gravity="start|center"
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/addEventEndTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="?textOnSurface"
+                    android:gravity="start|center"
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/addEventBreakContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?surface"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?headerOnSurface"
+                    android:text="@string/add_event_breaks_title"
+                    android:gravity="center"
+                    android:lineSpacingExtra="2.5dp"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?surface"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/addBreakStartLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="?subHeaderOnSurface"
+                        android:labelFor="@+id/addEventStartTime"
+                        android:text="@string/add_break_start_time"
+                        android:gravity="start|center"
+                        android:textAllCaps="true"
+                        android:padding="10dp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/addBreakStartTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="?textOnSurface"
+                        android:gravity="start|center"
+                        android:textAllCaps="true"
+                        android:padding="10dp"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?surface"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/addBreakEndLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="?subHeaderOnSurface"
+                        android:labelFor="@+id/addEventStartTime"
+                        android:text="@string/add_break_End_time"
+                        android:gravity="start|center"
+                        android:textAllCaps="true"
+                        android:padding="10dp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/addBreakEndTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="?textOnSurface"
+                        android:gravity="start|center"
+                        android:textAllCaps="true"
+                        android:padding="10dp"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+
+                <Switch
+                    android:id="@+id/addBreakIsPaid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?textOnSurface"
+                    android:gravity="start|center"
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:text="@string/add_break_is_paid" />
+
+
+                <Button
+                    android:id="@+id/addBreakBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?buttonPrimary"
+                    android:text="@string/add_event_add_break" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/breakRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submitEventBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?buttonPrimary"
+            android:text="@string/add_event_submit" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

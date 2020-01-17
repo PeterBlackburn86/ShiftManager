@@ -23,6 +23,34 @@
     <style name="AppTheme.AppBarOverlayLight" parent="ThemeOverlay.AppCompat.Light" />
     <style name="AppTheme.PopupOverlayLight" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <!--PREFERENCE THEMES-->
+    <style name="prefThemeBase" parent="@style/PreferenceThemeOverlay">
+        <item name="android:layout">@layout/pref_screen</item>
+        <item name="preferenceCategoryStyle">@style/prefCat</item>
+        <item name="switchPreferenceCompatStyle">@style/prefSwitch</item>
+    </style>
+    <style name="PreferenceThemeDark" parent="@style/prefThemeBase">
+        <item name="surface">@style/surface_dark</item>
+        <item name="headerOnSurface">@style/header_on_surface_dark</item>
+        <item name="pageBackground">@style/page_background_dark</item>
+    </style>
+    <style name="PreferenceThemeLight" parent="@style/prefThemeBase">
+        <item name="surface">@style/surface_light</item>
+        <item name="headerOnSurface">@style/header_on_surface_light</item>
+        <item name="pageBackground">@style/page_background_light</item>
+    </style>
+
+
+    <style name="prefCat" parent="Preference.Category">
+        <item name="android:layout">@layout/pref_category</item>
+    </style>
+
+    <style name="prefSwitch" parent="Preference.SwitchPreferenceCompat">
+        <item name="android:layout">@layout/pref_switch</item>
+    </style>
+
+
     <style name="Theme.MaterialDark" parent="AppTheme.NoActionBar">
 
         <!--SURFACE STYLES-->
@@ -45,6 +73,8 @@
 
         <!--CALENDAR STYLES-->
         <item name="calendarLegend">@style/calendar_legend_dark</item>
+        <item name="monthSelector">@style/month_selector_dark</item>
+        <item name="addEventButton">@style/add_event_dark</item>
 
         <!--NAV BAR STYLES-->
         <item name="navBar">@style/nav_dark</item>
@@ -77,6 +107,8 @@
 
         <!--CALENDAR STYLES-->
         <item name="calendarLegend">@style/calendar_legend_light</item>
+        <item name="monthSelector">@style/month_selector_light</item>
+        <item name="addEventButton">@style/add_event_light</item>
 
         <!--NAV BAR STYLES-->
         <item name="navBar">@style/nav_light</item>

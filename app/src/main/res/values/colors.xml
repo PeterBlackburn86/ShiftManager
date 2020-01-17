@@ -28,11 +28,11 @@
     <color name="lightOnPrimary">#FFFFFF</color>
     <color name="lightOnSecondary">#000000</color>
     <color name="lightOnBackground">#000000</color>
-    <color name="lightOnBackgroundAlt">#AAAAAA</color>
+    <color name="lightOnBackgroundAlt">#666666</color>
     <color name="lightOnSurface">#000000</color>
-    <color name="lightOnSurfaceAlt">#AAAAAA</color>
+    <color name="lightOnSurfaceAlt">#666666</color>
     <color name="lightOnError">#FFFFFF</color>
-    <color name="lightOnErrorAlt">#000000</color>
+    <color name="lightOnErrorAlt">#AAAAAA</color>
 
     <!--GENERAL COLORS-->
     <color name="calendarUnusedDays">#44CF6679</color>
