@@ -73,8 +73,16 @@
 
         <!--CALENDAR STYLES-->
         <item name="calendarLegend">@style/calendar_legend_dark</item>
-        <item name="monthSelector">@style/month_selector_dark</item>
+        <item name="monthSelectorButton">@style/month_selector_button_dark</item>
+        <item name="monthSelectorText">@style/month_selector_text_dark</item>
         <item name="addEventButton">@style/add_event_dark</item>
+        <item name="calendarFragTop">@style/calendar_frag_top_dark</item>
+        <item name="calendarFragBottom">@style/calendar_frag_bottom_dark</item>
+        <item name="eventItemEdit">@style/event_item_edit_dark</item>
+        <item name="eventItemDelete">@style/event_item_delete_dark</item>
+        <item name="eventItemText">@style/event_item_text_dark</item>
+        <item name="eventListTitle">@style/event_list_text_dark</item>
+        <item name="eventListAddText">@style/event_list_add_text_dark</item>
 
         <!--NAV BAR STYLES-->
         <item name="navBar">@style/nav_dark</item>
@@ -107,8 +115,16 @@
 
         <!--CALENDAR STYLES-->
         <item name="calendarLegend">@style/calendar_legend_light</item>
-        <item name="monthSelector">@style/month_selector_light</item>
+        <item name="monthSelectorButton">@style/month_selector_button_light</item>
+        <item name="monthSelectorText">@style/month_selector_text_light</item>
         <item name="addEventButton">@style/add_event_light</item>
+        <item name="calendarFragTop">@style/calendar_frag_top_light</item>
+        <item name="calendarFragBottom">@style/calendar_frag_bottom_light</item>
+        <item name="eventItemEdit">@style/event_item_edit_light</item>
+        <item name="eventItemDelete">@style/event_item_delete_light</item>
+        <item name="eventItemText">@style/event_item_text_light</item>
+        <item name="eventListTitle">@style/event_list_text_light</item>
+        <item name="eventListAddText">@style/event_list_add_text_light</item>
 
         <!--NAV BAR STYLES-->
         <item name="navBar">@style/nav_light</item>

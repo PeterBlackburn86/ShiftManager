@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         if(!_fragHelper.loadLastFragment()) {
-            _fragHelper.loadFragment(HomeFragment.getInstance());
+            _fragHelper.loadFragment(new HomeFragment());
         }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -116,13 +116,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
         switch (id) {
             case R.id.nav_home:
-                _fragHelper.loadFragment(HomeFragment.getInstance());
+                _fragHelper.loadFragment(new HomeFragment());
                 break;
             case R.id.nav_calendar:
-                _fragHelper.loadFragment(CalendarFragment.getInstance());
+                _fragHelper.loadFragment(new CalendarFragment());
                 break;
             case R.id.nav_templates:
-                _fragHelper.loadFragment(TemplateFragment.getInstance());
+                _fragHelper.loadFragment(new TemplateFragment());
                 break;
             case R.id.nav_settings:
 //                _fragHelper.loadFragment(PreferenceFragment.getInstance());

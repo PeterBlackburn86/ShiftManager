@@ -16,6 +16,18 @@
     <attr name="navBar" format="reference" />
     <attr name="appBar" format="reference" />
     <attr name="toolBar" format="reference" />
-    <attr name="monthSelector" format="reference" />
+
+
+    <!--CALENDAR FRAGMENT-->
+    <attr name="calendarFragTop" format="reference" />
+    <attr name="calendarFragBottom" format="reference" />
+    <attr name="monthSelectorButton" format="reference" />
+    <attr name="monthSelectorText" format="reference" />
     <attr name="addEventButton" format="reference" />
+    <attr name="eventItemEdit" format="reference" />
+    <attr name="eventItemDelete" format="reference" />
+    <attr name="eventItemText" format="reference" />
+    <attr name="eventListTitle" format="reference" />
+    <attr name="eventListAddText" format="reference" />
+
 </resources>

@@ -52,7 +52,6 @@
         <item name="android:background">@color/darkBackground</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:padding">@dimen/calendar_padding</item>
     </style>
 
     <style name="surface_dark">
@@ -86,13 +85,56 @@
     <style name="appbar_dark">
         <item name="android:theme">@style/AppTheme.AppBarOverlayDark</item>
     </style>
-    <style name="month_selector_dark">
-        <item name="android:background">@color/darkSurface</item>
+    <style name="month_selector_button_dark">
+        <item name="android:tint">@color/darkOnSurface</item>
+    </style>
+    <style name="month_selector_text_dark">
         <item name="android:tint">@color/darkOnSurface</item>
     </style>
 
     <style name="add_event_dark">
         <item name="android:src">@drawable/material_add_light</item>
+        <item name="android:tint">@color/darkOnSurface</item>
+    </style>
+
+    <style name="calendar_frag_bottom_dark">
+        <item name="android:background">@color/darkBackground</item>
+        <item name="android:padding">20dp</item>
+    </style>
+    <style name="calendar_frag_top_dark">
+        <item name="android:background">@color/primary</item>
+        <item name="android:padding">20dp</item>
+    </style>
+    <style name="event_item_text_dark">
+        <item name="android:background">@color/lightThemeSurface</item>
+        <item name="android:textColor">@color/onSurface</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">start|center</item>
+    </style>
+    <style name="event_item_edit_dark">
+        <item name="android:background">@color/primary</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="event_item_delete_dark">
+        <item name="android:background">@color/error</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="event_list_text_dark">
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/onBackground</item>
+    </style>
+    <style name="event_list_add_text_dark">
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/onBackground</item>
+        <item name="android:drawableTint">@color/onBackground</item>
+        <item name="android:drawableEnd">@drawable/material_add_event</item>
     </style>
 
     <!-- LIGHT THEME STYLES -->
@@ -101,7 +143,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/lightOnSurface</item>
+        <item name="android:textColor">@color/darkOnSurface</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
@@ -109,23 +151,23 @@
     <style name="nav_light">
         <item name="android:layout_gravity">start</item>
         <item name="android:fitsSystemWindows">true</item>
-        <item name="android:background">@color/lightSurface</item>
-        <item name="itemTextColor">@color/lightOnSurface</item>
-        <item name="itemIconTint">@color/lightOnSurface</item>
+        <item name="android:background">@color/surface</item>
+        <item name="itemTextColor">@color/onSurface</item>
+        <item name="itemIconTint">@color/onSurface</item>
     </style>
 
     <style name="on_surface_light">
-        <item name="android:textColor">@color/lightOnSurface</item>
+        <item name="android:textColor">@color/onSurface</item>
         <item name="android:textSize">12sp</item>
     </style>
 
     <style name="on_primary_light">
-        <item name="android:textColor">@color/lightOnPrimary</item>
+        <item name="android:textColor">@color/onPrimary</item>
         <item name="android:textSize">12sp</item>
     </style>
 
     <style name="on_secondary_light">
-        <item name="android:textColor">@color/lightOnSecondary</item>
+        <item name="android:textColor">@color/onSecondary</item>
         <item name="android:textSize">12sp</item>
     </style>
 
@@ -144,37 +186,36 @@
     </style>
 
     <style name="page_background_light">
-        <item name="android:background">@color/lightBackground</item>
+        <item name="android:background">@color/background</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:padding">@dimen/calendar_padding</item>
     </style>
 
     <style name="surface_light">
-        <item name="android:background">@color/lightSurface</item>
+        <item name="android:background">@color/surface</item>
     </style>
     <style name="surface_primary_light">
-        <item name="android:background">@color/lightPrimary</item>
+        <item name="android:background">@color/primary</item>
     </style>
     <style name="surface_secondary_light">
-        <item name="android:background">@color/lightSecondary</item>
+        <item name="android:background">@color/secondary</item>
     </style>
     <style name="surface_error_light">
-        <item name="android:background">@color/lightError</item>
+        <item name="android:background">@color/error</item>
     </style>
 
     <style name="button_primary_light">
-        <item name="android:background">@color/lightPrimary</item>
-        <item name="android:textColor">@color/lightOnPrimary</item>
+        <item name="android:background">@color/primary</item>
+        <item name="android:textColor">@color/onPrimary</item>
     </style>
     <style name="button_secondary_light">
-        <item name="android:background">@color/lightSecondary</item>
-        <item name="android:textColor">@color/lightOnSecondary</item>
+        <item name="android:background">@color/secondary</item>
+        <item name="android:textColor">@color/onSecondary</item>
     </style>
 
     <style name="toolbar_light">
-        <item name="android:background">@color/lightSurface</item>
-        <item name="titleTextColor">@color/lightOnSurface</item>
+        <item name="android:background">@color/surface</item>
+        <item name="titleTextColor">@color/onSurface</item>
         <item name="popupTheme">@style/AppTheme.PopupOverlayLight</item>
     </style>
 
@@ -182,13 +223,57 @@
         <item name="android:theme">@style/AppTheme.AppBarOverlayLight</item>
     </style>
 
-    <style name="month_selector_light">
-        <item name="android:background">@color/lightSurface</item>
-        <item name="android:tint">@color/lightOnSurface</item>
+    <style name="month_selector_button_light">
+        <item name="android:tint">@color/darkOnSurface</item>
+    </style>
+    <style name="month_selector_text_light">
+        <item name="android:textColor">@color/darkOnSurface</item>
     </style>
 
     <style name="add_event_light">
-        <item name="android:src">@drawable/material_add</item>
+        <item name="android:src">@drawable/material_add_light</item>
+        <item name="android:tint">@color/onSurface</item>
+    </style>
+    <style name="calendar_frag_bottom_light">
+        <item name="android:background">@color/background</item>
+        <item name="android:padding">20dp</item>
+    </style>
+    <style name="calendar_frag_top_light">
+        <item name="android:background">@color/primary</item>
+        <item name="android:padding">20dp</item>
+    </style>
+    <style name="event_item_text_light">
+        <item name="android:background">@color/lightThemeSurface</item>
+        <item name="android:textColor">@color/onSurface</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">start|center</item>
+    </style>
+
+    <style name="event_item_edit_light">
+        <item name="android:background">@color/primary</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="event_item_delete_light">
+        <item name="android:background">@color/error</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="event_list_text_light">
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/onBackground</item>
+    </style>
+    <style name="event_list_add_text_light">
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/onBackground</item>
+        <item name="android:drawableTint">@color/onBackground</item>
+        <item name="android:drawableEnd">@drawable/material_add_event</item>
+        <item name="android:drawablePadding">10dp</item>
     </style>
 
 </resources>

@@ -2,7 +2,6 @@
     android:id="@+id/legendLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="?surface"
     android:gravity="center"
     android:orientation="horizontal"
     android:paddingTop="10dp"
@@ -10,31 +9,31 @@
     android:weightSum="7">
 
     <TextView
-        style="?attr/calendarLegend"
+        style="?calendarLegend"
         android:text="@string/calendar_legend_monday" />
 
     <TextView
-        style="?attr/calendarLegend"
+        style="?calendarLegend"
         android:text="@string/calendar_legend_tuesday" />
 
     <TextView
-        style="?attr/calendarLegend"
+        style="?calendarLegend"
         android:text="@string/calendar_legend_wednesday" />
 
     <TextView
-        style="?attr/calendarLegend"
+        style="?calendarLegend"
         android:text="@string/calendar_legend_thursday" />
 
     <TextView
-        style="?attr/calendarLegend"
+        style="?calendarLegend"
         android:text="@string/calendar_legend_friday" />
 
     <TextView
-        style="?attr/calendarLegend"
+        style="?calendarLegend"
         android:text="@string/calendar_legend_saturday" />
 
     <TextView
-        style="?attr/calendarLegend"
+        style="?calendarLegend"
         android:text="@string/calendar_legend_sunday" />
 
 </LinearLayout>

@@ -77,7 +77,7 @@ public class CalendarFactory {
                 RelativeLayout dayContainer = container._dayContainer;
 
                 Resources.Theme theme = _context.getTheme();
-                int[] attrs = {R.attr.surface, R.attr.surfacePrimary, R.attr.textOnSurface, R.attr.textOnPrimary};
+                int[] attrs = {R.attr.surface, R.attr.surfaceSecondary, R.attr.textOnSurface, R.attr.textOnSecondary};
                 TypedArray values = theme.obtainStyledAttributes(attrs);
 
                 int[] backAttrs = { android.R.attr.background };
@@ -175,8 +175,15 @@ public class CalendarFactory {
         updateMonth();
     }
     private void updateMonth() {
-        if(_currentMonth.atDay(LocalDate.now().getDayOfMonth()).equals(LocalDate.now())) {
-            setSelectedDate(LocalDate.now());
+
+
+        if(_currentMonth.isValidDay(LocalDate.now().getDayOfMonth())) {
+
+            if (_currentMonth.atDay(LocalDate.now().getDayOfMonth()).equals(LocalDate.now())) {
+                setSelectedDate(LocalDate.now());
+            } else {
+                setSelectedDate(_currentMonth.atDay(1));
+            }
         } else {
             setSelectedDate(_currentMonth.atDay(1));
         }

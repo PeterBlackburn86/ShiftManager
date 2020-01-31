@@ -19,17 +19,19 @@ import io.realm.RealmObject;
 
 public class EventViewHolder extends BaseViewHolder {
 
-    TextView eventDateText;
-    TextView eventTimeTxt;
-    TextView eventType;
+//    TextView eventDateText;
+//    TextView eventTimeTxt;
+//    TextView eventType;
+    TextView eventInfo;
     ImageView removeBtn;
 
     public EventViewHolder(@NonNull View itemView) {
         super(itemView);
-        eventDateText = itemView.findViewById(R.id.eventDateText);
+//        eventDateText = itemView.findViewById(R.id.eventDateText);
         removeBtn = itemView.findViewById(R.id.removeEventBtn);
-        eventTimeTxt = itemView.findViewById(R.id.eventTimeTxt);
-        eventType = itemView.findViewById(R.id.eventType);
+        eventInfo = itemView.findViewById(R.id.eventInfo);
+//        eventTimeTxt = itemView.findViewById(R.id.eventTimeTxt);
+//        eventType = itemView.findViewById(R.id.eventType);
     }
 
     @Override
@@ -43,9 +45,11 @@ public class EventViewHolder extends BaseViewHolder {
         String title = event.getStartTime().format(formatter);
         String startTime = event.getStartTime().format(formatterTime);
         String endTime = event.getEndTime().format(formatterTime);
-        eventDateText.setText(title);
-        eventTimeTxt.setText(res.getString(R.string.event_time, startTime, endTime));
-        eventType.setText(res.getString(R.string.event_type, event.getEventType().getReadableName(), "Tesco"));
+
+        eventInfo.setText(res.getString(R.string.event_item_title, event.getEventType().getReadableName(), startTime, endTime)) ;
+//        eventDateText.setText(title);
+//        eventTimeTxt.setText(res.getString(R.string.event_time, startTime, endTime));
+//        eventType.setText(res.getString(R.string.event_type, event.getEventType().getReadableName(), "Tesco"));
 
         removeBtn.setOnClickListener(new View.OnClickListener() {
             @Override

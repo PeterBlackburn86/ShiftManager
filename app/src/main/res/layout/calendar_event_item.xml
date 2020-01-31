@@ -2,87 +2,53 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/darkSurface">
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/eventInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        style="?eventItemText"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/eventEditCont"
+        app:layout_constraintBottom_toBottomOf="@+id/eventEditCont"
+ />
 
     <FrameLayout
-        android:id="@+id/eventDateCont"
-        android:layout_width="0dp"
+        android:id="@+id/eventEditCont"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        style="?surfacePrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="H,1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.150">
+        style="?eventItemEdit"
 
-        <TextView
-            android:id="@+id/eventDateText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            style="?textOnPrimary"
-            android:lineSpacingExtra="2.5dp"
-            android:textAllCaps="true"/>
+        app:layout_constraintBottom_toBottomOf="@id/eventControlsCont"
+        app:layout_constraintTop_toTopOf="@id/eventControlsCont"
+        app:layout_constraintEnd_toStartOf="@+id/eventControlsCont">
+
+        <ImageView
+            android:id="@+id/eventEdit"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/material_edit_light" />
+
     </FrameLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:id="@+id/eventStartCont"
-        app:layout_constraintBottom_toBottomOf="@id/eventDateCont"
-        app:layout_constraintStart_toEndOf="@id/eventDateCont"
-        app:layout_constraintTop_toTopOf="@id/eventDateCont"
-        app:layout_constraintEnd_toStartOf="@+id/eventControlsCont"
-        style="?surface"
-        android:padding="5dp"
-        android:weightSum="2">
-        <TextView
-            android:fontFamily="sans-serif-black"
-            android:layout_width="match_parent"
-            android:id="@+id/eventType"
-            style="?textOnSurface"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:lineSpacingExtra="2.5dp"
-            android:textAllCaps="true" />
-
-        <TextView
-            android:fontFamily="sans-serif-black"
-            android:layout_width="match_parent"
-            android:id="@+id/eventTimeTxt"
-            style="?textOnSurface"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:lineSpacingExtra="2.5dp"
-            android:textAllCaps="true" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
+    <FrameLayout
         android:id="@+id/eventControlsCont"
-        android:gravity="center"
-        style="?surfaceError"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/eventStartCont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?eventItemDelete"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/eventStartCont"
-        app:layout_constraintDimensionRatio="W,1:1">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/removeEventBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
-            app:srcCompat="@drawable/material_delete_light" />
-    </LinearLayout>
+            android:src="@drawable/material_delete_light" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

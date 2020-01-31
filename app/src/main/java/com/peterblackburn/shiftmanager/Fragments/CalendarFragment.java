@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -26,25 +27,14 @@ public class CalendarFragment extends BaseFragment<CalendarFragment> implements 
 
     private static final int ADD_SHIFT_CODE = 1;
 
-    private static CalendarFragment _instance;
-
-    private RelativeLayout _shiftContainer;
-    private RelativeLayout _noShiftContainer;
     private TextView _shiftTitle;
     private TextView _monthYearTxt;
-    private ImageView _addShiftBtn;
+    private TextView _addShiftBtn;
     private RecyclerView _eventRecycler;
     private CalendarFactory _calendarFactory;
     private EventFactory _eventFactory;
     private CalendarView _calendarView;
     private Context _context;
-
-    public static CalendarFragment getInstance() {
-        if(_instance == null)
-            _instance = new CalendarFragment();
-
-        return _instance;
-    }
 
     public CalendarFragment() {
     }
@@ -63,8 +53,6 @@ public class CalendarFragment extends BaseFragment<CalendarFragment> implements 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
         _calendarView = view.findViewById(R.id.calendarView);
-        _shiftContainer = view.findViewById(R.id.shiftContainer);
-        _noShiftContainer = view.findViewById(R.id.noShiftContainer);
         _eventRecycler = view.findViewById(R.id.eventRecycler);
         _shiftTitle = view.findViewById(R.id.shiftTitle);
         _addShiftBtn = view.findViewById(R.id.addShiftBtn);
@@ -92,9 +80,6 @@ public class CalendarFragment extends BaseFragment<CalendarFragment> implements 
             _calendarFactory.setSelectedDate(LocalDate.now());
         }
         _eventFactory.updateShifts();
-
-        //CALENDAR DAY AND MONTH BINDINGS
-
 
         _addShiftBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,13 +136,6 @@ public class CalendarFragment extends BaseFragment<CalendarFragment> implements 
 
     @Override
     public void onShiftsUpdated(int results) {
-        if(results > 0) {
-            _shiftContainer.setVisibility(View.VISIBLE);
-            _noShiftContainer.setVisibility(View.GONE);
-        } else {
-            _shiftContainer.setVisibility(View.GONE);
-            _noShiftContainer.setVisibility(View.VISIBLE);
-        }
         updateEventTitle(_calendarFactory.getSelectedDate());
     }
 

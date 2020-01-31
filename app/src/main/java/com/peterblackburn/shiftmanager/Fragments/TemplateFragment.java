@@ -18,7 +18,6 @@ import com.peterblackburn.shiftmanager.R;
 
 public class TemplateFragment extends BaseFragment implements EventTemplateFactoryInterface {
 
-    private static TemplateFragment _instance;
     private static final int ADD_TEMPLATE_CODE = 1;
 
 
@@ -31,12 +30,6 @@ public class TemplateFragment extends BaseFragment implements EventTemplateFacto
     private Context _context;
 
     public  TemplateFragment() {
-    }
-
-    public static TemplateFragment getInstance() {
-        if(_instance == null)
-            _instance = new TemplateFragment();
-        return _instance;
     }
 
     @Override

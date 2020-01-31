@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
+
+    <color name="lightThemeSurface">#EEEEEE</color>
+
     <!--Dark Theme Material Design-->
     <color name="darkPrimary">#BB86FC</color>
     <color name="darkPrimaryVariant">#3700B3</color>
@@ -18,21 +23,23 @@
 
 
     <!--Light Theme Material Design-->
-    <color name="lightPrimary">#6200EE</color>
-    <color name="lightPrimaryVariant">#3700B3</color>
-    <color name="lightSecondary">#03DAC6</color>
-    <color name="lightSecondaryVariant">#018786</color>
-    <color name="lightBackground">#FFFFFF</color>
-    <color name="lightSurface">#EEEEEE</color>
-    <color name="lightError">#B00020</color>
-    <color name="lightOnPrimary">#FFFFFF</color>
-    <color name="lightOnSecondary">#000000</color>
-    <color name="lightOnBackground">#000000</color>
-    <color name="lightOnBackgroundAlt">#666666</color>
-    <color name="lightOnSurface">#000000</color>
-    <color name="lightOnSurfaceAlt">#666666</color>
-    <color name="lightOnError">#FFFFFF</color>
-    <color name="lightOnErrorAlt">#AAAAAA</color>
+    <color name="primary">#303f9f</color>
+    <color name="primaryLight">#666ad1</color>
+    <color name="primaryDark">#001970</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="secondary">#d32f2f</color>
+    <color name="secondaryLight">#ff6659</color>
+    <color name="secondaryDark">#9a0007</color>
+    <color name="onSecondary">#FFFFFF</color>
+    <color name="background">#FFFFFF</color>
+    <color name="onBackground">#000000</color>
+    <color name="surface">#DDDDDD</color>
+    <color name="onSurface">#000000</color>
+    <color name="error">#9a0007</color>
+    <color name="onError">#FFFFFF</color>
+    <color name="onBackgroundAlt">#666666</color>
+    <color name="onSurfaceAlt">#666666</color>
+    <color name="onErrorAlt">#AAAAAA</color>
 
     <!--GENERAL COLORS-->
     <color name="calendarUnusedDays">#44CF6679</color>

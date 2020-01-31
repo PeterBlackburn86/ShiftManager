@@ -3,95 +3,103 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="?pageBackground"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/calendarMonthSelector"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/calendar_padding"
-        layout="@layout/calendar_month_selector"/>
+        android:orientation="vertical"
+        style="?calendarFragTop">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/calendar_padding">
-
-        <com.kizitonwose.calendarview.CalendarView
-            android:id="@+id/calendarView"
+        <include
+            android:id="@+id/calendarMonthSelector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cv_dayViewResource="@layout/calendar_day_layout"
-            app:cv_monthHeaderResource="@layout/calendar_header"
-            app:cv_maxRowCount="6"
-            app:cv_orientation="horizontal"
-            app:cv_outDateStyle="endOfGrid"
-            app:cv_scrollMode="paged"
-            app:cv_inDateStyle="allMonths" />
-    </FrameLayout>
+            layout="@layout/calendar_month_selector"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.kizitonwose.calendarview.CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cv_dayViewResource="@layout/calendar_day_layout"
+                app:cv_monthHeaderResource="@layout/calendar_header"
+                app:cv_maxRowCount="6"
+                app:cv_orientation="horizontal"
+                app:cv_outDateStyle="endOfGrid"
+                app:cv_scrollMode="paged"
+                app:cv_inDateStyle="allMonths" />
+        </FrameLayout>
+
+    </LinearLayout>
 
 
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/calendar_padding"
-        android:layout_marginBottom="@dimen/calendar_padding"
-        style="?surface">
+        android:layout_height="match_parent"
+        style="?calendarFragBottom">
 
         <TextView
             android:id="@+id/shiftTitle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            style="?headerOnSurface"
-            android:textAlignment="textStart"
+            android:layout_height="0dp"
             android:layout_marginEnd="@dimen/calendar_padding"
+            style="?eventListTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/addShiftBtn"
             app:layout_constraintBottom_toBottomOf="@+id/addShiftBtn"
             app:layout_constraintEnd_toStartOf="@+id/addShiftBtn"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/addShiftBtn"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            style="?eventListAddText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/event_add_button" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/shiftTitle"
             app:layout_constraintBottom_toBottomOf="parent"
-            style="?addEventButton"/>
+            android:layout_marginTop="20dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/noShiftContainer">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:id="@+id/noShiftContainer">-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="?headerOnSurface"
-                android:layout_margin="@dimen/calendar_padding"
-                android:text="@string/event_not_found"
-                android:gravity="center"/>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                style="?headerOnSurface"-->
+<!--                android:layout_margin="@dimen/calendar_padding"-->
+<!--                android:text="@string/event_not_found"-->
+<!--                android:gravity="center"/>-->
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:id="@+id/shiftContainer">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:visibility="gone"-->
+<!--            android:id="@+id/shiftContainer">-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/eventRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:nestedScrollingEnabled="false"
-                android:layout_margin="0dp"/>
+<!--            -->
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
 </LinearLayout>

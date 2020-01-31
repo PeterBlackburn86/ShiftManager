@@ -12,7 +12,6 @@ import com.peterblackburn.shiftmanager.R;
 
 public class HomeFragment extends BaseFragment {
 
-    private static HomeFragment _instance;
 
     @Nullable
     @Override
@@ -26,13 +25,6 @@ public class HomeFragment extends BaseFragment {
     @Override
     public String getTitle() {
         return "Home";
-    }
-
-    public static HomeFragment getInstance() {
-        if(_instance == null)
-            _instance = new HomeFragment();
-
-        return _instance;
     }
 
     public HomeFragment() {

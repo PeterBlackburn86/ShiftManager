@@ -18,6 +18,7 @@
     <!--CALENDAR STRINGS-->
     <string name="event_title">Events | %1$s</string>
     <string name="event_not_found">No Shifts Found</string>
+    <string name="event_add_button">Add Event</string>
 
     <!--CALENDAR HEADER STRINGS-->
     <string name="calendar_header_title">%1$s %2$s</string>
@@ -58,6 +59,7 @@
     <!--EVENT STRINGS-->
     <string name="event_time">%1$s - %2$s</string>
     <string name="event_type">%1$s (%2$s)</string>
+    <string name="event_item_title">%1$s | %2$s - %3$s</string>
 
     <!--SETTINGS STRINGS-->
     <string name="prefs_dark_theme_summary">Enable or disable dark theme</string>
